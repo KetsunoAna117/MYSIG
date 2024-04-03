@@ -10,7 +10,7 @@ import SwiftUI
 struct PasswordField: View {
     let placeholder: String
     @State private var showText: Bool = false
-    @State var text: String
+    @Binding var text: String
     var onCommit: (()->Void)?
     
     var body: some View {
@@ -51,11 +51,11 @@ struct PasswordField: View {
 struct Test_Previews: PreviewProvider {
     static var previews: some View {
 //        Group {
-            PasswordField(placeholder: "Any placeholder", text: "")
+        PasswordField(placeholder: "Any placeholder", text: .constant("abc"))
                 .padding()
 //                .previewLayout(.fixed(width: 400, height: 100))
             
-            PasswordField(placeholder: "Any placeholder", text: "")
+        PasswordField(placeholder: "Any placeholder", text: .constant("abc"))
                 .padding()
                 .preferredColorScheme(.dark)
 //                .previewLayout(.fixed(width: 400, height: 100))

@@ -42,7 +42,7 @@ struct LoginView: View {
                 }
                 Spacer()
                 
-                PasswordField.init(placeholder: "", text: "")
+                PasswordField.init(placeholder: "", text: $password)
                 Divider()
                     .background(Color.black)
                 

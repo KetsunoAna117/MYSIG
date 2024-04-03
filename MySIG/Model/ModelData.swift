@@ -29,7 +29,7 @@ struct Data {
     var users: [User] = [
         User(id: 1,
              email: "Johndoe@mail.id",
-             password: "123",
+             password: "abc",
              name: "John Doe",
              phoneNumber: "+6287831353012",
              cohort: 7,

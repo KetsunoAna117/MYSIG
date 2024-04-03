@@ -9,11 +9,6 @@ import Foundation
 
 struct Utils {
     func validateUser(email: String, password: String, appStoreData: AppDataStore) -> User?{
-        for user in appStoreData.users {
-            if user.email == email{
-                return user
-            }
-        }
-        return nil
+        return appStoreData.users.first(where: { $0.email.lowercased() == email.lowercased() && $0.password == password })
     }
 }
