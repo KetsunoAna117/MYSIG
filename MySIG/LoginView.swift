@@ -42,6 +42,13 @@ struct LoginView: View {
                 Divider()
                     .background(Color.black)
                 
+                HStack{
+                    Spacer()
+                    Text("Recover Password")
+                        .font(.caption)
+                        .foregroundColor(Color(red:0.54, green:0.33, blue:0.44))
+                }
+                
                 Button(action: {
                             // Add login logic here
                         }, label: {
