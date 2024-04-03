@@ -9,12 +9,15 @@ import Foundation
 
 class AppDataStore: ObservableObject {
     @Published var currentActiveUser: User?
+    
+    @Published var users: [User]
     @Published var sigs: [SIG]
     @Published var events: [EventSIG]
     @Published var notifications: [SIGNotification]
 
     init() {
-        self.currentActiveUser = Data().users[0]
+        self.currentActiveUser = nil
+        self.users = Data().users
         self.sigs = Data().sigs
         self.events = Data().events
         self.notifications = Data().notification
@@ -25,7 +28,7 @@ class AppDataStore: ObservableObject {
 struct Data {
     var users: [User] = [
         User(id: 1,
-             email: "johndoe@mail.id",
+             email: "Johndoe@mail.id",
              password: "123",
              name: "John Doe",
              phoneNumber: "+6287831353012",
