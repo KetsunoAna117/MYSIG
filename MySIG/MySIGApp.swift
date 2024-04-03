@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MySIGApp: App {
+    @State var appDataStore = AppDataStore()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appDataStore)
         }
     }
 }
