@@ -17,7 +17,6 @@ struct CardView: View {
         let day = Utils().getDay(from: event.date ?? Date.now)
         let month = Utils().getMonth(from: event.date ?? Date.now)
         
-        
         ZStack(alignment: .topTrailing) {
             Rectangle()
                 .foregroundColor(.clear)
@@ -29,10 +28,17 @@ struct CardView: View {
             HStack(alignment: VerticalAlignment.center){
                 VStack {
                     ZStack {
-                        Image("EventCard-TimeBackground")
-                            .resizable()
-                            .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                            .frame(maxWidth: 30, maxHeight: 35)
+                        if let user = appDataStore.currentActiveUser {
+                            let userBookedThisEvent = Utils().checkIfUserBookEvent(
+                                event: event,
+                                user: user
+                            )
+                            
+                            Image(userBookedThisEvent ? "EventCard-TimeBackground-Booked" : "EventCard-TimeBackground")
+                                .resizable()
+                                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                .frame(maxWidth: 30, maxHeight: 35)
+                        }
                         Text(time[0])
                             .font(
                                 Font.custom("SF Pro Rounded", size: 12)
@@ -45,33 +51,40 @@ struct CardView: View {
                     }
                     
                     VStack(spacing: 1) {
-                        Text(dayName.uppercased())
-                            .font(
+                        if let user = appDataStore.currentActiveUser {
+                            let userBookedThisEvent = Utils().checkIfUserBookEvent(
+                                event: event,
+                                user: user
+                            )
+                            
+                            Text(dayName.uppercased())
+                                .font(
+                                    Font.custom("SF Pro Rounded", size: 12)
+                                        .weight(.bold)
+                                )
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(userBookedThisEvent ? Constants.Purple : .accentColor)
+                                .frame(width: 33.42199, height: 15, alignment: .center)
+                            
+                            Text("\(day)")
+                                .font(
+                                    Font.custom("SF Pro Rounded", size: 36)
+                                        .weight(.bold)
+                                )
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(userBookedThisEvent ? Constants.Purple : .accentColor)
+                                .frame(width: 59.96298, height: 34, alignment: .center)
+                            
+                            Text("\(month)")
+                              .font(
                                 Font.custom("SF Pro Rounded", size: 12)
-                                    .weight(.bold)
-                            )
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.accentColor)
-                            .frame(width: 33.42199, height: 15, alignment: .center)
-                        
-                        Text("\(day)")
-                            .font(
-                                Font.custom("SF Pro Rounded", size: 36)
-                                    .weight(.bold)
-                            )
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.accentColor)
-                            .frame(width: 59.96298, height: 34, alignment: .center)
-                        
-                        Text("\(month)")
-                          .font(
-                            Font.custom("SF Pro Rounded", size: 12)
-                              .weight(.bold)
-                          )
-                          .multilineTextAlignment(.center)
-                          .foregroundColor(.accentColor)
-                          .frame(width: 38.33698, height: 15, alignment: .center)
-                        
+                                  .weight(.bold)
+                              )
+                              .multilineTextAlignment(.center)
+                              .foregroundColor(userBookedThisEvent ? Constants.Purple : .accentColor)
+                              .frame(width: 38.33698, height: 15, alignment: .center)
+                            
+                        }
                     }
                 
                 }

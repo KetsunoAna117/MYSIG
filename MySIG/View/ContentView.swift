@@ -44,6 +44,14 @@ struct ContentView: View {
                     .tabItem {
                         Label("Explore", systemImage: "magnifyingglass")
                     }
+                    .toolbar {
+                        ToolbarItem(placement: .navigation) {
+                            Text("Explore")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .padding(.top, 80)
+                        }
+                    }
                 ProfileView()
                     .environmentObject(appDataStore)
                     .tag(Tab.profile)

@@ -11,7 +11,13 @@ struct ExploreView: View {
     @EnvironmentObject private var appDataStore: AppDataStore
     
     var body: some View {
-        Text("Hello, Explore!")
+        NavigationStack{
+            VStack (alignment: .leading) {
+                
+            }
+            .navigationTitle("Explore")
+        }
+        
     }
 }
 

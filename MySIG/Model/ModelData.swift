@@ -38,7 +38,7 @@ struct Data {
              cohort: 7,
              session: "Morning",
              joinedSigId: [],
-             bookedEventId: [1, 2],
+             bookedEventId: [2],
              notificationId: [1]
         ),
         User(id: 2,

@@ -11,7 +11,12 @@ struct ProfileView: View {
     @EnvironmentObject private var appDataStore: AppDataStore
     
     var body: some View {
-        Text("Hello, Profile!")
+        NavigationStack{
+            VStack {
+                
+            }
+            .navigationTitle("Profile")
+        }
     }
 }
 
