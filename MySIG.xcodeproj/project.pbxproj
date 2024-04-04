@@ -27,6 +27,7 @@
 		EC998A022BBDBEE4007C2399 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC998A012BBDBEE4007C2399 /* EditProfileView.swift */; };
 		EC998A042BBDBF30007C2399 /* JoinedSIGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC998A032BBDBF30007C2399 /* JoinedSIGView.swift */; };
 		EC998A062BBDBF41007C2399 /* PastEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC998A052BBDBF41007C2399 /* PastEventView.swift */; };
+		EC998A082BBEB559007C2399 /* halamanCobaCobaCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC998A072BBEB559007C2399 /* halamanCobaCobaCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		EC998A012BBDBEE4007C2399 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		EC998A032BBDBF30007C2399 /* JoinedSIGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedSIGView.swift; sourceTree = "<group>"; };
 		EC998A052BBDBF41007C2399 /* PastEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastEventView.swift; sourceTree = "<group>"; };
+		EC998A072BBEB559007C2399 /* halamanCobaCobaCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = halamanCobaCobaCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		3AEA21F62BBB96CE004239F4 = {
 			isa = PBXGroup;
 			children = (
+				EC998A072BBEB559007C2399 /* halamanCobaCobaCode.swift */,
 				3AEA22012BBB96CE004239F4 /* MySIG */,
 				3AEA22002BBB96CE004239F4 /* Products */,
 			);
@@ -231,6 +234,7 @@
 				3A8C742D2BBD4C1400CE1D58 /* SIG.swift in Sources */,
 				3A196F6F2BBD726F00109FB7 /* LoginView.swift in Sources */,
 				3AEA22052BBB96CE004239F4 /* ContentView.swift in Sources */,
+				EC998A082BBEB559007C2399 /* halamanCobaCobaCode.swift in Sources */,
 				3A196F732BBD747F00109FB7 /* Utils.swift in Sources */,
 				EC998A062BBDBF41007C2399 /* PastEventView.swift in Sources */,
 				3A8C74312BBD4DED00CE1D58 /* SIGNotification.swift in Sources */,

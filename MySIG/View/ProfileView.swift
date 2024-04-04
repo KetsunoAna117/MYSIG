@@ -24,6 +24,7 @@ struct ProfileView: View {
                         .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
                         .cornerRadius(50)
                     
+                    
                     VStack(alignment: .leading, content: {
                         Text("Ravi")
                             .font(.title2)
@@ -52,28 +53,27 @@ struct ProfileView: View {
                     .frame(height: 100)
                 }
                 .padding(.leading, -18)
-                .padding(.bottom, 50)
+                .padding(.bottom, 10)
                 
                 
                 List {
-                    NavigationLink(destination: EditProfileView()) {
+                    NavigationLink(destination: EditProfileView().navigationBarBackButtonHidden()) {
                         Section {
                             Text("Edit Profile")
                         }
                     }
-                    NavigationLink(destination: JoinedSIGView()) {
+                    NavigationLink(destination: JoinedSIGView().navigationBarBackButtonHidden()) {
                         Section {
-                            Text("View Joined SIG")
+                            Text("View Subscribed SIG")
                         }
                     }
-                    NavigationLink(destination: PastEventView()) {
+                    NavigationLink(destination: PastEventView().navigationBarBackButtonHidden()) {
                         Section {
                             Text("View Past Events")
                         }
                     }
                 }
-                .listStyle(GroupedListStyle())
-                .padding()
+                .listStyle(.plain)
                 .background(Color.white)
                 
                 Spacer()
@@ -99,7 +99,6 @@ struct ProfileView: View {
             
             
         }
-        .navigationTitle("Member Information")
     }
 }
 

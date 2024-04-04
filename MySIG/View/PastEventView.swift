@@ -9,10 +9,30 @@ import SwiftUI
 
 struct PastEventView: View {
     var body: some View {
-        NavigationView{
+        NavigationStack{
+            ZStack {
+                Text("Past Events")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                
+                HStack{
+                    NavigationLink(destination: ProfileView().navigationBarBackButtonHidden()){
+                        Image(systemName: "chevron.left")
+                        
+                        Text("Back")
+                    }
+                    
+                    Spacer()
+                }
+                .padding(.leading, 10)
+                .foregroundColor(.orange)
+                
+                
+            }
+            Divider()
             Text("Test")
+            Spacer()
         }
-        .navigationTitle("Past Events")
     }
 }
 

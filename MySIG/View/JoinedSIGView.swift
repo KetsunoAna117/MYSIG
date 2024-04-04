@@ -8,14 +8,51 @@
 import SwiftUI
 
 struct JoinedSIGView: View {
-    var body: some View {
-        NavigationView{
-            Text("Test")
+    @State private var searchText = ""
+    let items = ["Basketball", "Badminton", "Board Game", "Tennis", "Volley"]
+    var filteredItems: [String] {
+        if searchText.isEmpty {
+            return items
+        } else {
+            return items.filter { $0.localizedCaseInsensitiveContains(searchText) }
         }
-        .navigationTitle("Joined SIG View")
+    }
+    
+    var body: some View {
+        NavigationStack{
+            ZStack {
+                Text("Subsribed SIG")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                
+                HStack{
+                    NavigationLink(destination: ProfileView().navigationBarBackButtonHidden()){
+                        Image(systemName: "chevron.left")
+                        
+                        Text("Back")
+                    }
+                    
+                    Spacer()
+                }
+                .padding(.leading, 10)
+                .foregroundColor(.orange)
+            }
+            Divider()
+                
+            
+            List(filteredItems, id: \.self) { item in
+                Text(item)
+            }
+            .listStyle(.plain)
+            .searchable(text: $searchText, placement:.navigationBarDrawer(displayMode:.always), prompt: "Search items")
+            
+        }
     }
 }
 
 #Preview {
     JoinedSIGView()
 }
+
+
+//other struct

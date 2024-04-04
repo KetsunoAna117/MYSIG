@@ -8,12 +8,36 @@
 import SwiftUI
 
 struct EditProfileView: View {
+    @State var name = ""
+    @State var cohort = ""
+    @State var session = ""
+    @State var email = ""
+    @State var phone = ""
+    
     var body: some View {
         NavigationView{
             
             VStack{
-//                Text("Edit Profile")
-                Divider()
+                                ZStack {
+                                    Text("Edit Profile")
+                                        .font(.subheadline)
+                                    .fontWeight(.semibold)
+                
+                                    HStack{
+                                        NavigationLink(destination: ProfileView().navigationBarBackButtonHidden()){
+                                            Image(systemName: "chevron.left")
+                
+                                            Text("Back")
+                                        }
+                
+                                        Spacer()
+                                    }
+                                    .padding(.leading, 10)
+                                    .foregroundColor(.orange)
+                
+                
+                                }
+                                Divider()
                 
                 Image("ravi-img")
                     .resizable()
@@ -24,28 +48,29 @@ struct EditProfileView: View {
                 List{
                     HStack{
                         Text("Name")
-                        Text("Ravi")
+                        TextField("Ravi", text: $name)
+                        
                     }
                     
                     HStack{
                         Text("Cohort")
-                        Text("Ravi")
+                        TextField("7", text: $cohort)
                     }
                     HStack{
                         Text("Session")
-                        Text("Ravi")
+                        TextField("1", text: $session)
                     }
                     HStack{
                         Text("Email")
-                        Text("Ravi")
+                        TextField("RafiAhmad@mail. id", text: $email)
                     }
                     HStack{
                         Text("Phone")
-                        Text("Ravi")
+                        TextField("+62 9870392812", text: $phone)
                     }
                     
                 }
-                .listStyle(GroupedListStyle())
+                .listStyle(.plain)
                 
                 NavigationLink(destination: ProfileView().navigationBarBackButtonHidden()) {
                     Text("Save")
@@ -60,8 +85,29 @@ struct EditProfileView: View {
             }
             
             
+            
         }
-        .navigationTitle("Edit Profile")
+//        .padding(.top, 20)
+//        .navigationTitle("Edit Profile")
+//        .navigationBarTitleDisplayMode(.inline)
+//        .overlay {
+//            VStack{
+//                HStack{
+//                    NavigationLink(destination: ProfileView().navigationBarBackButtonHidden()){
+//                        Image(systemName: "chevron.left")
+//                        
+//                        Text("Back")
+//                    }
+//                    
+//                    Spacer()
+//                }
+//                .padding(.leading, 10)
+//                .foregroundColor(.orange)
+//                Divider()
+//                Spacer()
+//            }
+//            .padding(.top, -30)
+//        }
     }
 }
 
