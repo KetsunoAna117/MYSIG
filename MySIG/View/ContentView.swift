@@ -18,33 +18,39 @@ struct ContentView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            if(appDataStore.currentActiveUser == nil){
-                LoginView()
-            }
-            else{
-                TabView(selection: $tabSelection, content: {
-                    BookedEventView()
-                        .environmentObject(appDataStore)
-                        .tag(Tab.bookedEvent)
-                        .tabItem {
-                            Label("Booked Event", systemImage: "pencil.and.list.clipboard")
+        if(appDataStore.currentActiveUser == nil){
+            LoginView()
+        }
+        else{
+            TabView(selection: $tabSelection, content: {
+                BookedEventView()
+                    .environmentObject(appDataStore)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .tag(Tab.bookedEvent)
+                    .tabItem {
+                        Label("Booked Event", systemImage: "pencil.and.list.clipboard")
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .navigation) {
+                            Text("Booked Event")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .padding(.top, 80)
                         }
-                        .navigationTitle("Booked Event")
-                    ExploreView()
-                        .environmentObject(appDataStore)
-                        .tag(Tab.explore)
-                        .tabItem {
-                            Label("Explore", systemImage: "magnifyingglass")
-                        }
-                    ProfileView()
-                        .environmentObject(appDataStore)
-                        .tag(Tab.profile)
-                        .tabItem {
-                            Label("Profile", systemImage: "person")
-                        }
-                })
-            }
+                    }
+                ExploreView()
+                    .environmentObject(appDataStore)
+                    .tag(Tab.explore)
+                    .tabItem {
+                        Label("Explore", systemImage: "magnifyingglass")
+                    }
+                ProfileView()
+                    .environmentObject(appDataStore)
+                    .tag(Tab.profile)
+                    .tabItem {
+                        Label("Profile", systemImage: "person")
+                    }
+            })
         }
     }
 }
@@ -52,5 +58,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(AppDataStore())
-        
 }

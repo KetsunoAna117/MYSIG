@@ -16,8 +16,8 @@ struct EventSIG: Hashable{
     
     var listRemindedUser: [Int]
     var location: String
-    var date: Date
-    var time: TimeZone
+    var date: Date?
+    var time: String
     var maxSlots: Int
     var sigId: Int
     

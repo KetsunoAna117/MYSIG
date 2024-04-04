@@ -78,12 +78,10 @@
 		3A8C74262BBD4A0E00CE1D58 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3AFF018A2BBE4AEE00A4082B /* Tab */,
 				3A196F702BBD744B00109FB7 /* AuthenticationView */,
 				3A8C743C2BBD5F7600CE1D58 /* Components */,
 				3AEA22042BBB96CE004239F4 /* ContentView.swift */,
-				3A8C74342BBD542300CE1D58 /* BookedEventView.swift */,
-				3A8C74362BBD54D800CE1D58 /* ExploreView.swift */,
-				3A8C74382BBD54ED00CE1D58 /* ProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -144,6 +142,16 @@
 				3AEA22092BBB96D0004239F4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3AFF018A2BBE4AEE00A4082B /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				3A8C74342BBD542300CE1D58 /* BookedEventView.swift */,
+				3A8C74362BBD54D800CE1D58 /* ExploreView.swift */,
+				3A8C74382BBD54ED00CE1D58 /* ProfileView.swift */,
+			);
+			path = Tab;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -76,7 +76,7 @@ struct LoginView: View {
             
             if(isLoggedIn == true){
                 if let user = appDataStore.currentActiveUser {
-                    Text("User \(user.name) is logged in")
+                    Text("User \(user.name) successfully logged in")
                 }
             }
             

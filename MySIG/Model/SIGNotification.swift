@@ -12,5 +12,5 @@ struct SIGNotification: Hashable {
     
     var title: String
     var content: String
-    var date: Date
+    var date: Date?
 }

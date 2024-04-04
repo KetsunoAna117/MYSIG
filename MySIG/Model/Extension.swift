@@ -39,3 +39,7 @@ enum CustomColors {
         }
     }
 }
+
+struct Constants {
+  static let Red: Color = Color(red: 0.77, green: 0.15, blue: 0.11)
+}
