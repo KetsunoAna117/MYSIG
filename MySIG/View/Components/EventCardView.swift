@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CardView: View {
+struct EventCardView: View {
     @EnvironmentObject private var appDataStore: AppDataStore
     let event: EventSIG
     
@@ -177,6 +177,6 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(event: AppDataStore().events[0])
+    EventCardView(event: AppDataStore().events[0])
         .environmentObject(AppDataStore())
 }

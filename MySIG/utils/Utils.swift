@@ -8,10 +8,12 @@
 import Foundation
 
 struct Utils {
+    // USER
     func validateUser(email: String, password: String, appStoreData: AppDataStore) -> User?{
         return appStoreData.users.first(where: { $0.email.lowercased() == email.lowercased() && $0.password == password })
     }
     
+    // DATE
     func formatDate(from date: String) -> Date?{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -46,10 +48,12 @@ struct Utils {
         }
     }
     
+    // SIG
     func getSigById(sigId: Int, appStoreData: AppDataStore) -> SIG?{
         return appStoreData.sigs.first(where: {$0.id == sigId})
     }
     
+    // EVENT
     func checkIfUserBookEvent(event: EventSIG, user: User) -> Bool{
         for registeredMember in event.listRegisteredParticipantId {
             if(registeredMember == user.id){
@@ -61,6 +65,12 @@ struct Utils {
     
     func getEventById(eventId: Int, appStoreData: AppDataStore) -> EventSIG?{
         return appStoreData.events.first(where: { $0.id == eventId })
+    }
+    
+    func getEventListWithoutTheUser(user: User, appStoreData: AppDataStore) -> [EventSIG]{
+        return appStoreData.events.filter { event in
+            checkIfUserBookEvent(event: event, user: user) == false
+        }
     }
     
     func calculateRemainingSlot(event: EventSIG) -> Int{

@@ -19,7 +19,7 @@ struct BookedEventView: View {
                         if let event = Utils().getEventById(
                             eventId: eventID,
                             appStoreData: appDataStore ){
-                            CardView(event: event)
+                            EventCardView(event: event)
                                 .listRowInsets(EdgeInsets())
                                 .environmentObject(appDataStore)
                                 
@@ -28,6 +28,7 @@ struct BookedEventView: View {
                 }
             }
             .navigationTitle("Booked Event")
+            .padding(.top, 10)
             .listStyle(.plain)
             .listRowSpacing(10)
             .toolbar(content: {
@@ -42,7 +43,6 @@ struct BookedEventView: View {
                     }
                 })
             })
-            .padding(.top, 10)
         .padding(.horizontal, 16)
         }
     }

@@ -30,28 +30,20 @@ struct ContentView: View {
                     .tabItem {
                         Label("Booked Event", systemImage: "pencil.and.list.clipboard")
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .navigation) {
-                            Text("Booked Event")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .padding(.top, 80)
-                        }
-                    }
                 ExploreView()
                     .environmentObject(appDataStore)
                     .tag(Tab.explore)
                     .tabItem {
                         Label("Explore", systemImage: "magnifyingglass")
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .navigation) {
-                            Text("Explore")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .padding(.top, 80)
-                        }
-                    }
+//                    .toolbar {
+//                        ToolbarItem(placement: .navigation) {
+//                            Text("Explore")
+//                                .font(.largeTitle)
+//                                .fontWeight(.bold)
+//                                .padding(.top, 80)
+//                        }
+//                    }
                 ProfileView()
                     .environmentObject(appDataStore)
                     .tag(Tab.profile)
