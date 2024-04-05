@@ -6,73 +6,54 @@
 //
 
 import SwiftUI
+import Combine
+
 
 struct EditProfileView: View {
-    @State var name = ""
-    @State var cohort = ""
-    @State var session = ""
-    @State var email = ""
-    @State var phone = ""
-    
+    var user: User
+    @State var editedUser: User
+    @State var cohortString: String
+
     var body: some View {
-        NavigationView{
-            
-            VStack{
-                                ZStack {
-                                    Text("Edit Profile")
-                                        .font(.subheadline)
-                                    .fontWeight(.semibold)
-                
-                                    HStack{
-                                        NavigationLink(destination: ProfileView().navigationBarBackButtonHidden()){
-                                            Image(systemName: "chevron.left")
-                
-                                            Text("Back")
-                                        }
-                
-                                        Spacer()
-                                    }
-                                    .padding(.leading, 10)
-                                    .foregroundColor(.orange)
-                
-                
-                                }
-                                Divider()
-                
+        NavigationStack {
+            VStack {
                 Image("ravi-img")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+                    .frame(width: 100, height: 100)
                     .cornerRadius(50)
                 
-                List{
-                    HStack{
+                List {
+                    HStack {
                         Text("Name")
-                        TextField("Ravi", text: $name)
-                        
+                        TextField("Ravi", text: $editedUser.name)
                     }
                     
-                    HStack{
+                    HStack {
                         Text("Cohort")
-                        TextField("7", text: $cohort)
-                    }
-                    HStack{
-                        Text("Session")
-                        TextField("1", text: $session)
-                    }
-                    HStack{
-                        Text("Email")
-                        TextField("RafiAhmad@mail. id", text: $email)
-                    }
-                    HStack{
-                        Text("Phone")
-                        TextField("+62 9870392812", text: $phone)
+                        TextField("7", text: $cohortString)
                     }
                     
+                    HStack {
+                        Text("Session")
+                        TextField("1", text: $editedUser.session)
+                    }
+                    
+                    HStack {
+                        Text("Email")
+                        TextField("RafiAhmad@mail.id", text: $editedUser.email)
+                    }
+                    
+                    HStack {
+                        Text("Phone")
+                        TextField("+62 9870392812", text: $editedUser.phoneNumber)
+                    }
                 }
                 .listStyle(.plain)
                 
-                NavigationLink(destination: ProfileView().navigationBarBackButtonHidden()) {
+                NavigationLink{
+                    ProfileView(user: editedUser).navigationBarBackButtonHidden().navigationBarTitleDisplayMode(.large)
+                } label: {
                     Text("Save")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -80,37 +61,59 @@ struct EditProfileView: View {
                         .frame(width: 329, height: 50)
                         .background(Color(red: 1, green: 0.675, blue: 0.36))
                         .cornerRadius(10)
-                        .padding(.top, 111)
+                        .padding(.top, 11)
+                }
+                
+//                NavigationLink(destination: ProfileView(user: editedUser).navigationBarBackButtonHidden()) {
+//                    Text("Save")
+//                        .font(.headline)
+//                        .foregroundColor(.white)
+//                        .padding()
+//                        .frame(width: 329, height: 50)
+//                        .background(Color(red: 1, green: 0.675, blue: 0.36))
+//                        .cornerRadius(10)
+//                        .padding(.top, 11)
+//                }
+            }
+            .onAppear {
+                self.editedUser = user
+                self.cohortString = String(user.cohort)
+            }
+            .onReceive(Just(editedUser)) { _ in
+                // Update the user object in the model with the changes made in the editedUser state variable
+            }
+            .onReceive(Just(cohortString)) { value in
+                if let newCohort = Int(value) {
+                    editedUser.cohort = newCohort
                 }
             }
-            
-            
-            
         }
-//        .padding(.top, 20)
-//        .navigationTitle("Edit Profile")
-//        .navigationBarTitleDisplayMode(.inline)
-//        .overlay {
-//            VStack{
-//                HStack{
-//                    NavigationLink(destination: ProfileView().navigationBarBackButtonHidden()){
-//                        Image(systemName: "chevron.left")
-//                        
-//                        Text("Back")
-//                    }
-//                    
-//                    Spacer()
-//                }
-//                .padding(.leading, 10)
-//                .foregroundColor(.orange)
-//                Divider()
-//                Spacer()
-//            }
-//            .padding(.top, -30)
-//        }
+        .navigationTitle("Edit Profile")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
-#Preview {
-    EditProfileView()
+struct EditProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        EditProfileView(user: User(id: 1,
+                                   email: "johndoe@example.com",
+                                   password: "password123",
+                                   name: "John Doe",
+                                   phoneNumber: "+1234567890",
+                                   cohort: 1,
+                                   session: "Morning",
+                                   joinedSigId: [],
+                                   bookedEventId: [],
+                                   notificationId: []),
+                        editedUser: User(id: 1,
+                                         email: "johndoe@example.com",
+                                         password: "password123",
+                                         name: "John Doe",
+                                         phoneNumber: "+1234567890",
+                                         cohort: 1,
+                                         session: "Morning",
+                                         joinedSigId: [],
+                                         bookedEventId: [],
+                                         notificationId: []), cohortString: "7")
+    }
 }

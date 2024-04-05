@@ -20,33 +20,18 @@ struct JoinedSIGView: View {
     
     var body: some View {
         NavigationStack{
-            ZStack {
-                Text("Subsribed SIG")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                
-                HStack{
-                    NavigationLink(destination: ProfileView().navigationBarBackButtonHidden()){
-                        Image(systemName: "chevron.left")
-                        
-                        Text("Back")
-                    }
-                    
-                    Spacer()
+            VStack{
+                List(filteredItems, id: \.self) { item in
+                    Text(item)
                 }
-                .padding(.leading, 10)
-                .foregroundColor(.orange)
-            }
-            Divider()
+                .listStyle(.plain)
+                .searchable(text: $searchText, placement:.navigationBarDrawer(displayMode:.always), prompt: "Search items")
                 
-            
-            List(filteredItems, id: \.self) { item in
-                Text(item)
+                Spacer()
             }
-            .listStyle(.plain)
-            .searchable(text: $searchText, placement:.navigationBarDrawer(displayMode:.always), prompt: "Search items")
-            
         }
+        .navigationTitle("Subscribed SIG")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

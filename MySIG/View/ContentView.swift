@@ -10,6 +10,21 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject private var appDataStore: AppDataStore
     @State private var tabSelection: Tab = .bookedEvent
+        @State private var user = User(id: 1,
+                                      email: "johndoe@example.com",
+                                      password: "password123",
+                                      name: "John Doe",
+                                      phoneNumber: "+1234567890",
+                                      cohort: 1,
+                                      session: "Morning",
+                                      joinedSigId: [],
+                                      bookedEventId: [],
+                                      notificationId: [])
+
+        
+            
+        
+    
     
     enum Tab {
         case bookedEvent
@@ -37,7 +52,7 @@ struct ContentView: View {
                         .tabItem {
                             Label("Explore", systemImage: "magnifyingglass")
                         }
-                    ProfileView()
+                    ProfileView(user: user)
                         .environmentObject(appDataStore)
                         .tag(Tab.profile)
                         .tabItem {

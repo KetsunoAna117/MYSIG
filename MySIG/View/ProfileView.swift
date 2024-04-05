@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject private var appDataStore: AppDataStore
-    
+    @EnvironmentObject var appDataStore: AppDataStore
+    var user: User
+//    @State private var isEditingProfile = false // Added state variable to track editing status
+        
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Divider()
                     .padding(.bottom, 16)
@@ -26,25 +28,25 @@ struct ProfileView: View {
                     
                     
                     VStack(alignment: .leading, content: {
-                        Text("Ravi")
+                        Text(user.name)
                             .font(.title2)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         
-                        Text("ADA Cohort 7 - Session 1")
-                            .font(.body)
+                        Text("ADA Cohort \(user.cohort) - Session \(user.session)")
+                            .font(.footnote)
                             .foregroundColor(Color(red: 1, green: 0.675, blue: 0.36))
                         
                         Spacer()
                         
                         HStack{
                             Image(systemName: "envelope")
-                            Text("RafiAhmad.@apple. com")
+                            Text(user.email)
                                 .font(.footnote)
                                 .foregroundColor(.gray)
                         }
                         HStack{
                             Image(systemName: "phone")
-                            Text("+628761291809")
+                            Text(user.phoneNumber)
                                 .font(.footnote)
                                 .foregroundColor(.gray)
                         }
@@ -57,21 +59,26 @@ struct ProfileView: View {
                 
                 
                 List {
-                    NavigationLink(destination: EditProfileView().navigationBarBackButtonHidden()) {
-                        Section {
-                            Text("Edit Profile")
-                        }
+                    NavigationLink{
+                        EditProfileView(user: user, editedUser: user, cohortString: "7")
+                        
+                    } label: {
+                        Text("Edit Profile")
+                        
                     }
-                    NavigationLink(destination: JoinedSIGView().navigationBarBackButtonHidden()) {
-                        Section {
-                            Text("View Subscribed SIG")
-                        }
+                    
+                    NavigationLink{
+                        JoinedSIGView()
+                    } label: {
+                        Text("View Subscribed SIG")
                     }
-                    NavigationLink(destination: PastEventView().navigationBarBackButtonHidden()) {
-                        Section {
-                            Text("View Past Events")
-                        }
+                    
+                    NavigationLink{
+                        PastEventView()
+                    } label: {
+                        Text("View Past Events")
                     }
+                    
                 }
                 .listStyle(.plain)
                 .background(Color.white)
@@ -96,15 +103,29 @@ struct ProfileView: View {
                 
             }
             .navigationTitle("Member Information")
-            
-            
         }
     }
 }
 
+struct ProfileView_Previews: PreviewProvider {
+    static var user = User(id: 1,
+                           email: "Johndoe@mail.id",
+                           password: "abc",
+                           name: "John Doe",
+                           phoneNumber: "+6287831353012",
+                           cohort: 7,
+                           session: "Morning",
+                           joinedSigId: [],
+                           bookedEventId: [1, 2],
+                           notificationId: [1])
 
-
-#Preview {
-    ProfileView()
-        .environmentObject(AppDataStore())
+    static var previews: some View {
+        ProfileView(user: user)
+            .environmentObject(AppDataStore())
+    }
 }
+
+//#Preview {
+//    ProfileView(user: user)
+//        .environmentObject(AppDataStore())
+//}
