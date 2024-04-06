@@ -10,6 +10,8 @@ import SwiftUI
 struct BookedEventView: View {
     @EnvironmentObject private var appDataStore: AppDataStore
     @State private var showNotification = false
+    @State private var notificationDetent = PresentationDetent.medium
+    @State private var haveNotificaton = false
     
     var body: some View {
         NavigationStack {
@@ -30,7 +32,7 @@ struct BookedEventView: View {
                 Button(action: {
                     showNotification.toggle()
                 }, label: {
-                    if(appDataStore.currentActiveUser?.notificationId.isEmpty == true){
+                    if(haveNotificaton == false){
                         Image(systemName: "bell")
                     }
                     else{
@@ -38,7 +40,29 @@ struct BookedEventView: View {
                     }
                 })
             })
-//        .padding(.horizontal, 16)
+            .sheet(isPresented: $showNotification, content: {
+                NotificationView()
+                    .presentationDetents(
+                        [.medium, .large],
+                        selection: $notificationDetent
+                    )
+            })
+            //        .padding(.horizontal, 16)
+        }
+        .onChange(
+            of: appDataStore.currentActiveUser,
+            {
+                if(appDataStore.currentActiveUser?.notificationId.isEmpty == true){
+                    haveNotificaton = false
+                }
+                else{
+                    haveNotificaton = true
+                }
+            })
+        .onAppear(){
+            if let user = appDataStore.currentActiveUser {
+                haveNotificaton = user.notificationId.isEmpty ? false : true
+            }
         }
     }
 }
@@ -48,5 +72,5 @@ struct BookedEventView: View {
         BookedEventView()
             .environmentObject(AppDataStore())
     }
-
+    
 }

@@ -13,6 +13,9 @@
 		3A47AE3F2BC13FBF00073D75 /* SIGDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE3E2BC13FBF00073D75 /* SIGDetails.swift */; };
 		3A47AE412BC14DA700073D75 /* InformationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE402BC14DA700073D75 /* InformationRowView.swift */; };
 		3A47AE432BC1511800073D75 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE422BC1511800073D75 /* EventListView.swift */; };
+		3A47AE462BC1837E00073D75 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE452BC1837E00073D75 /* NotificationView.swift */; };
+		3A47AE4B2BC1865E00073D75 /* NotificationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE4A2BC1865E00073D75 /* NotificationListView.swift */; };
+		3A47AE4D2BC1869A00073D75 /* NotificationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE4C2BC1869A00073D75 /* NotificationRowView.swift */; };
 		3A8C74292BBD4A4100CE1D58 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C74282BBD4A4100CE1D58 /* ModelData.swift */; };
 		3A8C742B2BBD4A6E00CE1D58 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C742A2BBD4A6E00CE1D58 /* User.swift */; };
 		3A8C742D2BBD4C1400CE1D58 /* SIG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C742C2BBD4C1400CE1D58 /* SIG.swift */; };
@@ -39,6 +42,9 @@
 		3A47AE3E2BC13FBF00073D75 /* SIGDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIGDetails.swift; sourceTree = "<group>"; };
 		3A47AE402BC14DA700073D75 /* InformationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationRowView.swift; sourceTree = "<group>"; };
 		3A47AE422BC1511800073D75 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
+		3A47AE452BC1837E00073D75 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		3A47AE4A2BC1865E00073D75 /* NotificationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListView.swift; sourceTree = "<group>"; };
+		3A47AE4C2BC1869A00073D75 /* NotificationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRowView.swift; sourceTree = "<group>"; };
 		3A8C74282BBD4A4100CE1D58 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		3A8C742A2BBD4A6E00CE1D58 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A8C742C2BBD4C1400CE1D58 /* SIG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIG.swift; sourceTree = "<group>"; };
@@ -96,6 +102,41 @@
 			path = SIGView;
 			sourceTree = "<group>";
 		};
+		3A47AE442BC1836D00073D75 /* BookedEvent */ = {
+			isa = PBXGroup;
+			children = (
+				3A8C74342BBD542300CE1D58 /* BookedEventView.swift */,
+				3A47AE452BC1837E00073D75 /* NotificationView.swift */,
+			);
+			path = BookedEvent;
+			sourceTree = "<group>";
+		};
+		3A47AE472BC183F500073D75 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				3A47AE422BC1511800073D75 /* EventListView.swift */,
+				3A8C743D2BBD5F8900CE1D58 /* EventCardView.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		3A47AE482BC1840200073D75 /* SIG */ = {
+			isa = PBXGroup;
+			children = (
+				3AE461502BBF876B005FB89E /* SIGCardView.swift */,
+			);
+			path = SIG;
+			sourceTree = "<group>";
+		};
+		3A47AE492BC1864A00073D75 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				3A47AE4A2BC1865E00073D75 /* NotificationListView.swift */,
+				3A47AE4C2BC1869A00073D75 /* NotificationRowView.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		3A8C74262BBD4A0E00CE1D58 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,10 +164,10 @@
 		3A8C743C2BBD5F7600CE1D58 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				3A8C743D2BBD5F8900CE1D58 /* EventCardView.swift */,
-				3AE461502BBF876B005FB89E /* SIGCardView.swift */,
+				3A47AE492BC1864A00073D75 /* Notification */,
+				3A47AE472BC183F500073D75 /* Event */,
+				3A47AE482BC1840200073D75 /* SIG */,
 				3A47AE402BC14DA700073D75 /* InformationRowView.swift */,
-				3A47AE422BC1511800073D75 /* EventListView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -171,7 +212,7 @@
 		3AFF018A2BBE4AEE00A4082B /* Tab */ = {
 			isa = PBXGroup;
 			children = (
-				3A8C74342BBD542300CE1D58 /* BookedEventView.swift */,
+				3A47AE442BC1836D00073D75 /* BookedEvent */,
 				3AFF018C2BBE986000A4082B /* Explore */,
 				3A8C74382BBD54ED00CE1D58 /* ProfileView.swift */,
 			);
@@ -261,7 +302,10 @@
 				3A8C742B2BBD4A6E00CE1D58 /* User.swift in Sources */,
 				3A47AE3F2BC13FBF00073D75 /* SIGDetails.swift in Sources */,
 				3A8C743B2BBD56C800CE1D58 /* Extension.swift in Sources */,
+				3A47AE462BC1837E00073D75 /* NotificationView.swift in Sources */,
 				3A8C742D2BBD4C1400CE1D58 /* SIG.swift in Sources */,
+				3A47AE4B2BC1865E00073D75 /* NotificationListView.swift in Sources */,
+				3A47AE4D2BC1869A00073D75 /* NotificationRowView.swift in Sources */,
 				3AFF01902BBE98A300A4082B /* ExploreSIGView.swift in Sources */,
 				3AE461512BBF876B005FB89E /* SIGCardView.swift in Sources */,
 				3A196F6F2BBD726F00109FB7 /* LoginView.swift in Sources */,

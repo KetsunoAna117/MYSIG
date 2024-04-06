@@ -56,6 +56,21 @@ struct Utils {
         }
     }
     
+    func getYear(from date: Date) -> String {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year], from: date)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        dateFormatter.calendar = calendar
+        
+        if let yearDate = calendar.date(from: components) {
+            return dateFormatter.string(from: yearDate)
+        } else {
+            return ""
+        }
+    }
+    
     // SIG
     func getSigById(sigId: Int, appStoreData: AppDataStore) -> SIG?{
         return appStoreData.sigs.first(where: {$0.id == sigId})
@@ -105,5 +120,23 @@ struct Utils {
         let maxSlots = event.maxSlots
         
         return maxSlots - event.listRegisteredParticipantId.count
+    }
+    
+    // NOTIFICATION
+    func getNotificationByID(notificationID: Int, appStoreData: AppDataStore) -> SIGNotification? {
+        return appStoreData.notifications.first(where: { $0.id == notificationID })
+    }
+    
+    func getNotificationFromListID(notificationIdList: [Int], appStoreData: AppDataStore) -> [SIGNotification] {
+        return notificationIdList.compactMap{ notificationID in
+            getNotificationByID(notificationID: notificationID, appStoreData: appStoreData)
+        }
+    }
+    
+    func deleteNotificationByID(notificationID: Int, userId: Int, appStoreData: AppDataStore) {
+        if var user = appStoreData.users.first(where: { $0.id == userId }) {
+            user.notificationId.removeAll(where: { $0 == notificationID})
+            appStoreData.currentActiveUser = user
+        }
     }
 }

@@ -154,7 +154,7 @@ struct Data {
     var notification: [SIGNotification] = [
         SIGNotification(
             id: 1,
-            title: "Jadwal DND baru",
+            title: "Jadwal DND baru yang dibuat secara mendadak dan singkat",
             content: "Siapa yang udah lama pingin main DnD? Ayo tunggu apa lagi mumpung kita ada sesi kedua besok jumat!",
             date: Utils().formatDate(from: "2024-03-28")
         )
