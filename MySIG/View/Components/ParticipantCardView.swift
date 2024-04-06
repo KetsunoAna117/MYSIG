@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RegisteredParticipantsView: View {
+struct ParticipantCardView: View {
     var userData: User
     
     var body: some View {
@@ -27,12 +27,12 @@ struct RegisteredParticipantsView: View {
                 .padding(.trailing, 20)
         }
         .padding(1)
-        .frame(width: 350, height: 70)
+        .frame(width: 340, height: 70)
         .border(Color.gray, width: 0.5)
     }
 }
 
 #Preview {
-    RegisteredParticipantsView(userData: AppDataStore().users[0])
+    ParticipantCardView(userData: AppDataStore().users[0])
         .environmentObject(AppDataStore())
 }

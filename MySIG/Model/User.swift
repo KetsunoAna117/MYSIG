@@ -13,6 +13,7 @@ struct User: Hashable {
     var email: String
     var password: String
     
+    var picture: String
     var name: String
     var phoneNumber: String
     var cohort: Int

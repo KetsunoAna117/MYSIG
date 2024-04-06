@@ -21,6 +21,18 @@ struct Utils {
         return appStoreData.users.first(where: { $0.id == sigData.picId })
     }
     
+    func getUsersRegisteredForEvent(eventData: EventSIG, appStoreData: AppDataStore) -> [User] {
+        var registeredUsers: [User] = []
+        
+        for userId in eventData.listRegisteredParticipantId {
+            if let user = appStoreData.users.first(where: { $0.id == userId }) {
+                registeredUsers.append(user)
+            }
+        }
+        
+        return registeredUsers
+    }
+    
     // DATE
     func formatDate(from date: String) -> Date?{
         let dateFormatter = DateFormatter()
@@ -106,4 +118,5 @@ struct Utils {
         
         return maxSlots - event.listRegisteredParticipantId.count
     }
+    
 }

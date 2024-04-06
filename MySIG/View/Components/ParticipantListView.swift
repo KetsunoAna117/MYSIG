@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct ParticipantListView: View {
+    let participantList: [User]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if participantList.isEmpty == false {
+            List {
+                ForEach(participantList, id: \.self) { anUser in
+                        ParticipantCardView(userData: anUser)
+                        .environmentObject(AppDataStore())
+                }
+            }
+            .listStyle(.plain)
+        }
     }
 }
 
 #Preview {
-    ParticipantListView()
+    ParticipantListView(participantList: Utils().getUsersRegisteredForEvent(eventData: AppDataStore().events[0], appStoreData: AppDataStore()))
 }

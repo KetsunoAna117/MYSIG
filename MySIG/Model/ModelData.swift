@@ -23,6 +23,7 @@ class AppDataStore: ObservableObject {
         self.events = Data().events
         self.notifications = Data().notification
     }
+    
 }
 
 
@@ -33,6 +34,7 @@ struct Data {
         User(id: 1,
              email: "Johndoe@mail.id",
              password: "123",
+             picture: "john-doe",
              name: "John Doe",
              phoneNumber: "+6287831353012",
              cohort: 7,
@@ -44,6 +46,7 @@ struct Data {
         User(id: 2,
              email: "jamesrc@mail.id",
              password: "123",
+             picture: "james",
              name: "James RC",
              phoneNumber: "+6287831353012",
              cohort: 7,
@@ -55,6 +58,7 @@ struct Data {
         User(id: 3,
              email: "dea@mail.id",
              password: "123",
+             picture: "dea",
              name: "Dea",
              phoneNumber: "+6287831353012",
              cohort: 7,
@@ -66,6 +70,7 @@ struct Data {
         User(id: 4,
              email: "johan@mail.id",
              password: "123",
+             picture: "johan",
              name: "Johan",
              phoneNumber: "+6287831353012",
              cohort: 7,

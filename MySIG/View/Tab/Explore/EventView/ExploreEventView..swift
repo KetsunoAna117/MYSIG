@@ -26,7 +26,28 @@ struct ExploreEventView: View {
     
     var body: some View {
         VStack {
-            EventListView(eventList: filteredEventList)
+//            EventListView(eventList: filteredEventList)
+            
+            List {
+                ForEach(filteredEventList, id: \.self) { event in
+                    EventCardView(event: event)
+    //                    .listRowInsets(EdgeInsets())
+                        .environmentObject(appDataStore)
+                        .background(
+                            NavigationLink(
+                                destination: EventDetails(selectedEvent: event),
+                                label: {
+                                    Text("View Details")
+                                        .foregroundColor(.blue)
+                                        .font(.subheadline)
+                                }
+                            )
+                        )
+                }
+            }
+            .listStyle(.plain)
+            .listRowSpacing(10)
+            
         }
     }
 }
