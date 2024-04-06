@@ -23,24 +23,9 @@ extension Color {
     }
 }
 
-enum CustomColors {
-    case customOrange
-    case customRed
-    case customPurple
-    
-    var color: Color {
-        switch self {
-        case .customOrange:
-            return Color(hex: "#FFAB5C")
-        case .customRed:
-            return Color(hex: "#C5261B")
-        case .customPurple:
-            return Color(hex: "#8A5671")
-        }
-    }
-}
-
 struct Constants {
     static let Red: Color = Color(red: 0.77, green: 0.15, blue: 0.11)
     static let Purple: Color = Color(red: 0.54, green: 0.34, blue: 0.44)
+    static let Orange: Color = Color(red: 1, green: 0.67, blue: 0.36)
+    static let OrangeLight: Color = Color(red: 1, green: 0.67, blue: 0.36)
 }

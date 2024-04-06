@@ -11,18 +11,25 @@ struct EventListView: View {
     @EnvironmentObject private var appDataStore: AppDataStore
     @Binding var searchedText: String
 
+    @State var eventList: [EventSIG]
+    
+    var filteredEventList: [EventSIG] {
+        if(searchedText.isEmpty == false){
+            return eventList.filter { event in
+                Utils().getSigById(sigId: event.sigId, appStoreData: appDataStore)?.name.contains(searchedText) ?? false ||
+                event.name.contains(searchedText) ||
+                event.location.contains(searchedText)
+            }
+        }
+        return eventList
+    }
+    
     var body: some View {
         List {
-            if let user = appDataStore.currentActiveUser {
-                let eventList = Utils().getEventListWithoutTheUser(
-                    user: user,
-                    appStoreData: appDataStore)
-                ForEach(eventList, id: \.self) { event in
-                    EventCardView(event: event)
-                        .listRowInsets(EdgeInsets())
-                        .environmentObject(appDataStore)
-                }
+            ForEach(filteredEventList, id: \.self) { anEvent in
+                    EventCardView(event: anEvent)
             }
+            .listRowInsets(EdgeInsets())
         }
         .listStyle(.plain)
         .listRowSpacing(10)
@@ -30,6 +37,6 @@ struct EventListView: View {
 }
 
 #Preview {
-    EventListView(searchedText: .constant("Badminton"))
+    EventListView(searchedText: .constant(""), eventList: AppDataStore().events)
         .environmentObject(AppDataStore())
 }

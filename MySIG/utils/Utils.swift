@@ -13,6 +13,10 @@ struct Utils {
         return appStoreData.users.first(where: { $0.email.lowercased() == email.lowercased() && $0.password == password })
     }
     
+    func getUserFromSIG(sigData: SIG, appStoreData: AppDataStore) -> User? {
+        return appStoreData.users.first(where: { $0.id == sigData.picId })
+    }
+    
     // DATE
     func formatDate(from date: String) -> Date?{
         let dateFormatter = DateFormatter()
@@ -51,6 +55,14 @@ struct Utils {
     // SIG
     func getSigById(sigId: Int, appStoreData: AppDataStore) -> SIG?{
         return appStoreData.sigs.first(where: {$0.id == sigId})
+    }
+    
+    func getAllSIG(appStoreData: AppDataStore) -> [SIG]{
+        return appStoreData.sigs
+    }
+    
+    func calculateOnGoingSigEvent(sig: SIG) -> Int {
+        return sig.listEventId.count
     }
     
     // EVENT

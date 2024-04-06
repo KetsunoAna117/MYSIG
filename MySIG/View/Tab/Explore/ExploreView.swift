@@ -17,6 +17,12 @@ struct ExploreView: View {
         case sig
     }
     
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Constants.Orange)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color.white)], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Constants.Purple)], for: .normal)
+    }
+    
     var body: some View {
         NavigationStack{
             VStack(alignment: .center) {
@@ -33,11 +39,18 @@ struct ExploreView: View {
                 .pickerStyle(.segmented)
                 
                 VStack {
-                    if tabSelection == Tab.event {
-                        EventListView(searchedText: $searchText)
-                            .environmentObject(appDataStore)
-                    } else if tabSelection == Tab.sig {
-                        SIGListView(searchedText: $searchText)
+                    switch tabSelection {
+                    case .event:
+                        if let user = appDataStore.currentActiveUser {
+                            let eventList = Utils().getEventListWithoutTheUser(
+                                user: user,
+                                appStoreData: appDataStore)
+                            EventListView(searchedText: $searchText, eventList: eventList)
+                                .environmentObject(appDataStore)
+                        }
+                    case .sig:
+                        let sigList = Utils().getAllSIG(appStoreData: appDataStore)
+                        SIGListView(searchedText: $searchText, sigList: sigList)
                             .environmentObject(appDataStore)
                     }
                 }

@@ -23,7 +23,7 @@ struct EventCardView: View {
                 .frame(height: 160)
                 .background(Color.white)
                 .cornerRadius(5)
-            .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 1)
+                .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 1)
             
             HStack(alignment: VerticalAlignment.center){
                 VStack {
@@ -47,7 +47,7 @@ struct EventCardView: View {
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color.white)
                             .frame(width: 57.99698, height: 15, alignment: .center)
-                        .padding(.bottom, 10)
+                            .padding(.bottom, 10)
                     }
                     
                     VStack(spacing: 1) {
@@ -76,38 +76,38 @@ struct EventCardView: View {
                                 .frame(width: 59.96298, height: 34, alignment: .center)
                             
                             Text("\(month)")
-                              .font(
-                                Font.custom("SF Pro Rounded", size: 12)
-                                  .weight(.bold)
-                              )
-                              .multilineTextAlignment(.center)
-                              .foregroundColor(userBookedThisEvent ? Constants.Purple : .accentColor)
-                              .frame(width: 38.33698, height: 15, alignment: .center)
+                                .font(
+                                    Font.custom("SF Pro Rounded", size: 12)
+                                        .weight(.bold)
+                                )
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(userBookedThisEvent ? Constants.Purple : .accentColor)
+                                .frame(width: 38.33698, height: 15, alignment: .center)
                             
                         }
                     }
-                
+                    
                 }
                 .padding(.top, -50)
                 .padding(.trailing, 15)
                 .padding(.leading, 20)
-
+                
                 
                 Rectangle()
-                  .foregroundColor(.clear)
-                  .frame(width: 1, height: 80)
-                  .background(Color.secondary)
-                  .padding(.trailing, 8)
+                    .foregroundColor(.clear)
+                    .frame(width: 1, height: 80)
+                    .background(Color.secondary)
+                    .padding(.trailing, 8)
                 
                 VStack (alignment: .leading){
                     Spacer()
                     Text(event.name)
-                      .font(.title2)
-                      .fontWeight(.bold)
-                      .foregroundColor(.black)
-                      .frame(width: 200, alignment: .leading)
-                      .lineLimit(2)
-                      .truncationMode(.tail)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                        .frame(width: 200, alignment: .leading)
+                        .lineLimit(2)
+                        .truncationMode(.tail)
                     
                     VStack (alignment: .leading){
                         HStack{
@@ -119,9 +119,9 @@ struct EventCardView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 12, height: 12)
                                 Text("SIG \(foundSIG.name)")
-                                  .font(Font.custom("SF Pro", size: 12))
-                                  .foregroundColor(.black)
-                                  .frame(width: 150, height: 11, alignment: .leading)
+                                    .font(Font.custom("SF Pro", size: 12))
+                                    .foregroundColor(.black)
+                                    .frame(width: 150, height: 11, alignment: .leading)
                             }
                         }
                         .padding(.bottom, 1)
@@ -133,9 +133,9 @@ struct EventCardView: View {
                             Text(event.location)
                                 .lineLimit(2)
                                 .truncationMode(.tail)
-                              .font(Font.custom("SF Pro", size: 12))
-                              .foregroundColor(.black)
-                              .frame(width: 150, alignment: .leading)
+                                .font(Font.custom("SF Pro", size: 12))
+                                .foregroundColor(.black)
+                                .frame(width: 150, alignment: .leading)
                         }
                     }
                     Spacer()
@@ -162,11 +162,11 @@ struct EventCardView: View {
                             )
                         
                         Text("\(remainingSlot) remaining slot")
-                          .font(
-                            Font.custom("SF Pro", size: 12)
-                              .weight(.medium)
-                          )
-                      .foregroundColor(Color.white)
+                            .font(
+                                Font.custom("SF Pro", size: 12)
+                                    .weight(.medium)
+                            )
+                            .foregroundColor(Color.white)
                     }
                     .padding(.trailing, 5)
                 }
