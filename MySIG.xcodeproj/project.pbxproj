@@ -10,6 +10,7 @@
 		3A196F6E2BBD726F00109FB7 /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A196F6C2BBD726F00109FB7 /* PasswordField.swift */; };
 		3A196F6F2BBD726F00109FB7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A196F6D2BBD726F00109FB7 /* LoginView.swift */; };
 		3A196F732BBD747F00109FB7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A196F722BBD747F00109FB7 /* Utils.swift */; };
+		3A47AE3F2BC13FBF00073D75 /* SIGDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE3E2BC13FBF00073D75 /* SIGDetails.swift */; };
 		3A8C74292BBD4A4100CE1D58 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C74282BBD4A4100CE1D58 /* ModelData.swift */; };
 		3A8C742B2BBD4A6E00CE1D58 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C742A2BBD4A6E00CE1D58 /* User.swift */; };
 		3A8C742D2BBD4C1400CE1D58 /* SIG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C742C2BBD4C1400CE1D58 /* SIG.swift */; };
@@ -33,6 +34,7 @@
 		3A196F6C2BBD726F00109FB7 /* PasswordField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 		3A196F6D2BBD726F00109FB7 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3A196F722BBD747F00109FB7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		3A47AE3E2BC13FBF00073D75 /* SIGDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIGDetails.swift; sourceTree = "<group>"; };
 		3A8C74282BBD4A4100CE1D58 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		3A8C742A2BBD4A6E00CE1D58 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A8C742C2BBD4C1400CE1D58 /* SIG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIG.swift; sourceTree = "<group>"; };
@@ -79,6 +81,15 @@
 				3A196F722BBD747F00109FB7 /* Utils.swift */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		3A47AE3D2BC13FB200073D75 /* SIGView */ = {
+			isa = PBXGroup;
+			children = (
+				3AFF018F2BBE98A300A4082B /* SIGListView.swift */,
+				3A47AE3E2BC13FBF00073D75 /* SIGDetails.swift */,
+			);
+			path = SIGView;
 			sourceTree = "<group>";
 		};
 		3A8C74262BBD4A0E00CE1D58 /* View */ = {
@@ -166,7 +177,7 @@
 			children = (
 				3A8C74362BBD54D800CE1D58 /* ExploreView.swift */,
 				3AFF018D2BBE987900A4082B /* EventListView.swift */,
-				3AFF018F2BBE98A300A4082B /* SIGListView.swift */,
+				3A47AE3D2BC13FB200073D75 /* SIGView */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -242,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8C742B2BBD4A6E00CE1D58 /* User.swift in Sources */,
+				3A47AE3F2BC13FBF00073D75 /* SIGDetails.swift in Sources */,
 				3A8C743B2BBD56C800CE1D58 /* Extension.swift in Sources */,
 				3A8C742D2BBD4C1400CE1D58 /* SIG.swift in Sources */,
 				3AFF01902BBE98A300A4082B /* SIGListView.swift in Sources */,

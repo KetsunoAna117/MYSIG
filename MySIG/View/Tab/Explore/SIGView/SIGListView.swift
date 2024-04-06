@@ -27,8 +27,18 @@ struct SIGListView: View {
         List {
             ForEach(filteredSIGList, id: \.self) { sig in
                 SIGCardView(sigData: sig)
-                    .listRowInsets(EdgeInsets())
+//                    .listRowInsets(EdgeInsets())
                     .environmentObject(appDataStore)
+                    .background(
+                        NavigationLink(
+                            destination: SIGDetails(selectedSIG: sig),
+                            label: {
+                                Text("View Details")
+                                    .foregroundColor(.blue)
+                                    .font(.subheadline)
+                            }
+                        )
+                    )
             }
         }
         .listStyle(.plain)
@@ -37,6 +47,8 @@ struct SIGListView: View {
 }
 
 #Preview {
-    SIGListView(searchedText: .constant(""), sigList: Utils().getAllSIG(appStoreData: AppDataStore()))
-        .environmentObject(AppDataStore())
+    NavigationStack {
+        SIGListView(searchedText: .constant(""), sigList: Utils().getAllSIG(appStoreData: AppDataStore()))
+            .environmentObject(AppDataStore())
+    }
 }

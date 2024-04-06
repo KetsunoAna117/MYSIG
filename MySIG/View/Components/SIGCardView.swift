@@ -14,11 +14,11 @@ struct SIGCardView: View {
     var body: some View {
         ZStack {
             Rectangle()
-              .foregroundColor(.clear)
-              .frame(height: 90)
-              .background(Color.white)
-              .cornerRadius(5)
-              .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 1)
+                .foregroundColor(.clear)
+                .frame(height: 90)
+                .background(Color.white)
+                .cornerRadius(5)
+                .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 1)
             
             HStack {
                 Image("\(sigData.name)")
@@ -48,10 +48,10 @@ struct SIGCardView: View {
                 if(eventTotal > 0){
                     ZStack(alignment: .center) {
                         Rectangle()
-                          .foregroundColor(.clear)
-                          .frame(width: 50, height: 30)
-                          .background(Constants.Red)
-                          .cornerRadius(10)
+                            .foregroundColor(.clear)
+                            .frame(width: 50, height: 30)
+                            .background(Constants.Red)
+                            .cornerRadius(10)
                         
                         HStack {
                             Text("\(eventTotal)")
@@ -66,7 +66,7 @@ struct SIGCardView: View {
                         .padding()
                     }
                 }
-
+                
             }
         }
     }

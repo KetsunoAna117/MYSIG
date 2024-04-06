@@ -20,7 +20,7 @@ struct BookedEventView: View {
                             eventId: eventID,
                             appStoreData: appDataStore ){
                             EventCardView(event: event)
-                                .listRowInsets(EdgeInsets())
+//                                .listRowInsets(EdgeInsets())
                                 .environmentObject(appDataStore)
                                 
                         }
@@ -43,7 +43,7 @@ struct BookedEventView: View {
                     }
                 })
             })
-        .padding(.horizontal, 16)
+//        .padding(.horizontal, 16)
         }
     }
 }

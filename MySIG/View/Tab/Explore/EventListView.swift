@@ -29,7 +29,7 @@ struct EventListView: View {
             ForEach(filteredEventList, id: \.self) { anEvent in
                     EventCardView(event: anEvent)
             }
-            .listRowInsets(EdgeInsets())
+//            .listRowInsets(EdgeInsets())
         }
         .listStyle(.plain)
         .listRowSpacing(10)
