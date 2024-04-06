@@ -11,6 +11,8 @@
 		3A196F6F2BBD726F00109FB7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A196F6D2BBD726F00109FB7 /* LoginView.swift */; };
 		3A196F732BBD747F00109FB7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A196F722BBD747F00109FB7 /* Utils.swift */; };
 		3A47AE3F2BC13FBF00073D75 /* SIGDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE3E2BC13FBF00073D75 /* SIGDetails.swift */; };
+		3A47AE412BC14DA700073D75 /* InformationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE402BC14DA700073D75 /* InformationRowView.swift */; };
+		3A47AE432BC1511800073D75 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE422BC1511800073D75 /* EventListView.swift */; };
 		3A8C74292BBD4A4100CE1D58 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C74282BBD4A4100CE1D58 /* ModelData.swift */; };
 		3A8C742B2BBD4A6E00CE1D58 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C742A2BBD4A6E00CE1D58 /* User.swift */; };
 		3A8C742D2BBD4C1400CE1D58 /* SIG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C742C2BBD4C1400CE1D58 /* SIG.swift */; };
@@ -26,8 +28,8 @@
 		3AEA22052BBB96CE004239F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA22042BBB96CE004239F4 /* ContentView.swift */; };
 		3AEA22072BBB96D0004239F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AEA22062BBB96D0004239F4 /* Assets.xcassets */; };
 		3AEA220A2BBB96D0004239F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AEA22092BBB96D0004239F4 /* Preview Assets.xcassets */; };
-		3AFF018E2BBE987900A4082B /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF018D2BBE987900A4082B /* EventListView.swift */; };
-		3AFF01902BBE98A300A4082B /* SIGListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF018F2BBE98A300A4082B /* SIGListView.swift */; };
+		3AFF018E2BBE987900A4082B /* ExploreEventView..swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF018D2BBE987900A4082B /* ExploreEventView..swift */; };
+		3AFF01902BBE98A300A4082B /* ExploreSIGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF018F2BBE98A300A4082B /* ExploreSIGView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		3A196F6D2BBD726F00109FB7 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3A196F722BBD747F00109FB7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		3A47AE3E2BC13FBF00073D75 /* SIGDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIGDetails.swift; sourceTree = "<group>"; };
+		3A47AE402BC14DA700073D75 /* InformationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationRowView.swift; sourceTree = "<group>"; };
+		3A47AE422BC1511800073D75 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		3A8C74282BBD4A4100CE1D58 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		3A8C742A2BBD4A6E00CE1D58 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A8C742C2BBD4C1400CE1D58 /* SIG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIG.swift; sourceTree = "<group>"; };
@@ -51,8 +55,8 @@
 		3AEA22042BBB96CE004239F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3AEA22062BBB96D0004239F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AEA22092BBB96D0004239F4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3AFF018D2BBE987900A4082B /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
-		3AFF018F2BBE98A300A4082B /* SIGListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIGListView.swift; sourceTree = "<group>"; };
+		3AFF018D2BBE987900A4082B /* ExploreEventView..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreEventView..swift; sourceTree = "<group>"; };
+		3AFF018F2BBE98A300A4082B /* ExploreSIGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSIGView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +90,7 @@
 		3A47AE3D2BC13FB200073D75 /* SIGView */ = {
 			isa = PBXGroup;
 			children = (
-				3AFF018F2BBE98A300A4082B /* SIGListView.swift */,
+				3AFF018F2BBE98A300A4082B /* ExploreSIGView.swift */,
 				3A47AE3E2BC13FBF00073D75 /* SIGDetails.swift */,
 			);
 			path = SIGView;
@@ -121,6 +125,8 @@
 			children = (
 				3A8C743D2BBD5F8900CE1D58 /* EventCardView.swift */,
 				3AE461502BBF876B005FB89E /* SIGCardView.swift */,
+				3A47AE402BC14DA700073D75 /* InformationRowView.swift */,
+				3A47AE422BC1511800073D75 /* EventListView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -176,7 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				3A8C74362BBD54D800CE1D58 /* ExploreView.swift */,
-				3AFF018D2BBE987900A4082B /* EventListView.swift */,
+				3AFF018D2BBE987900A4082B /* ExploreEventView..swift */,
 				3A47AE3D2BC13FB200073D75 /* SIGView */,
 			);
 			path = Explore;
@@ -256,14 +262,16 @@
 				3A47AE3F2BC13FBF00073D75 /* SIGDetails.swift in Sources */,
 				3A8C743B2BBD56C800CE1D58 /* Extension.swift in Sources */,
 				3A8C742D2BBD4C1400CE1D58 /* SIG.swift in Sources */,
-				3AFF01902BBE98A300A4082B /* SIGListView.swift in Sources */,
+				3AFF01902BBE98A300A4082B /* ExploreSIGView.swift in Sources */,
 				3AE461512BBF876B005FB89E /* SIGCardView.swift in Sources */,
 				3A196F6F2BBD726F00109FB7 /* LoginView.swift in Sources */,
 				3AEA22052BBB96CE004239F4 /* ContentView.swift in Sources */,
 				3A196F732BBD747F00109FB7 /* Utils.swift in Sources */,
 				3A8C74312BBD4DED00CE1D58 /* SIGNotification.swift in Sources */,
-				3AFF018E2BBE987900A4082B /* EventListView.swift in Sources */,
+				3A47AE432BC1511800073D75 /* EventListView.swift in Sources */,
+				3AFF018E2BBE987900A4082B /* ExploreEventView..swift in Sources */,
 				3A8C74372BBD54D800CE1D58 /* ExploreView.swift in Sources */,
+				3A47AE412BC14DA700073D75 /* InformationRowView.swift in Sources */,
 				3AEA22032BBB96CE004239F4 /* MySIGApp.swift in Sources */,
 				3A8C743E2BBD5F8900CE1D58 /* EventCardView.swift in Sources */,
 				3A8C742F2BBD4CE900CE1D58 /* EventSIG.swift in Sources */,

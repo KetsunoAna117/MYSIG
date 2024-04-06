@@ -13,22 +13,53 @@ struct SIGDetails: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            ScrollView {
-                VStack (alignment: .leading) {
-                    Text("\(selectedSIG.name.capitalized)")
-                        .font(.title)
+            VStack (alignment: .leading) {
+                Text("\(selectedSIG.name.capitalized)")
+                    .font(.title)
                     .fontWeight(.bold)
-                    Text("\(selectedSIG.desc)")
-                        .font(.subheadline)
+                    .padding(.bottom, 1)
+                Text("\(selectedSIG.desc)")
+                    .font(.subheadline)
+                    .padding(.bottom, 20)
+                
+                if let user = Utils().getUserFromSIG(
+                    sigData: selectedSIG,
+                    appStoreData: appDataStore) {
                     
-                    HStack {
+                    InformationRowView(
+                        informationType: "PIC",
+                        informationData: user.name
+                    )
+                }
+                
+                VStack(alignment: .leading, content: {
+                    Text("Event List")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                    
+                    VStack(alignment: .center) {
+                        let eventList = Utils().getAllEventFromListId(
+                            eventIdList: selectedSIG.listEventId,
+                            appStoreData: AppDataStore()
+                        )
+                        
+                        if eventList.isEmpty {
+                            Text("There's no event at the moment...")
+                                .font(.footnote)
+                                .foregroundStyle(Color.gray)
+                            Spacer()
+                        } else {
+                            EventListView(eventList: eventList)
+                        }
                         
                     }
-                }
+                })
+                .padding(.top, 30)
+                
             }
-            .padding(.horizontal, 16)
-
-        
+            .padding(.horizontal, 24)
+            
+            
             Divider()
                 .frame(height: 1)
             Button(action: {
@@ -41,6 +72,7 @@ struct SIGDetails: View {
             .buttonStyle(.borderedProminent)
             .padding(.top, 10)
         }
+        .padding(.vertical, 16)
         .navigationTitle("SIG Profile")
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -48,7 +80,7 @@ struct SIGDetails: View {
 
 #Preview {
     NavigationStack{
-        SIGDetails(selectedSIG: AppDataStore().sigs[0])
+        SIGDetails(selectedSIG: AppDataStore().sigs[3])
             .environmentObject(AppDataStore())
     }
 }

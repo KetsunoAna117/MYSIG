@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EventListView: View {
+struct ExploreEventView: View {
     @EnvironmentObject private var appDataStore: AppDataStore
     @Binding var searchedText: String
 
@@ -25,18 +25,13 @@ struct EventListView: View {
     }
     
     var body: some View {
-        List {
-            ForEach(filteredEventList, id: \.self) { anEvent in
-                    EventCardView(event: anEvent)
-            }
-//            .listRowInsets(EdgeInsets())
+        VStack {
+            EventListView(eventList: filteredEventList)
         }
-        .listStyle(.plain)
-        .listRowSpacing(10)
     }
 }
 
 #Preview {
-    EventListView(searchedText: .constant(""), eventList: AppDataStore().events)
+    ExploreEventView(searchedText: .constant(""), eventList: AppDataStore().events)
         .environmentObject(AppDataStore())
 }

@@ -13,18 +13,13 @@ struct BookedEventView: View {
     
     var body: some View {
         NavigationStack {
-            List {
+            VStack {
                 if let currentActiveUser = appDataStore.currentActiveUser {
-                    ForEach(currentActiveUser.bookedEventId, id: \.self) { eventID in
-                        if let event = Utils().getEventById(
-                            eventId: eventID,
-                            appStoreData: appDataStore ){
-                            EventCardView(event: event)
-//                                .listRowInsets(EdgeInsets())
-                                .environmentObject(appDataStore)
-                                
-                        }
-                    }
+                    let eventList = Utils().getAllEventFromListId(
+                        eventIdList: currentActiveUser.bookedEventId,
+                        appStoreData: appDataStore
+                    )
+                    EventListView(eventList: eventList)
                 }
             }
             .navigationTitle("Booked Event")

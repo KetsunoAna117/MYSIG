@@ -13,6 +13,10 @@ struct Utils {
         return appStoreData.users.first(where: { $0.email.lowercased() == email.lowercased() && $0.password == password })
     }
     
+    func getUserFromId(id: Int, appStoreData: AppDataStore) -> User? {
+        return appStoreData.users.first(where: { $0.id == id })
+    }
+    
     func getUserFromSIG(sigData: SIG, appStoreData: AppDataStore) -> User? {
         return appStoreData.users.first(where: { $0.id == sigData.picId })
     }
@@ -73,6 +77,18 @@ struct Utils {
             }
         }
         return false
+    }
+    
+    func getAllEventFromListId(eventIdList: [Int], appStoreData: AppDataStore) -> [EventSIG] {
+        return eventIdList.compactMap { eventId in
+            getEventById(eventId: eventId, appStoreData: appStoreData)
+        }
+    }
+    
+    func getEventListFromSIG(sigId: Int, appStoreData: AppDataStore) -> [EventSIG] {
+        return appStoreData.events.filter { event in
+            event.sigId == sigId
+        }
     }
     
     func getEventById(eventId: Int, appStoreData: AppDataStore) -> EventSIG?{

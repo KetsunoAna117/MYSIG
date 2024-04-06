@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SIGListView: View {
+struct ExploreSIGView: View {
     @EnvironmentObject private var appDataStore: AppDataStore
     @Binding var searchedText: String
     
@@ -48,7 +48,7 @@ struct SIGListView: View {
 
 #Preview {
     NavigationStack {
-        SIGListView(searchedText: .constant(""), sigList: Utils().getAllSIG(appStoreData: AppDataStore()))
+        ExploreSIGView(searchedText: .constant(""), sigList: Utils().getAllSIG(appStoreData: AppDataStore()))
             .environmentObject(AppDataStore())
     }
 }

@@ -45,12 +45,12 @@ struct ExploreView: View {
                             let eventList = Utils().getEventListWithoutTheUser(
                                 user: user,
                                 appStoreData: appDataStore)
-                            EventListView(searchedText: $searchText, eventList: eventList)
+                            ExploreEventView(searchedText: $searchText, eventList: eventList)
                                 .environmentObject(appDataStore)
                         }
                     case .sig:
                         let sigList = Utils().getAllSIG(appStoreData: appDataStore)
-                        SIGListView(searchedText: $searchText, sigList: sigList)
+                        ExploreSIGView(searchedText: $searchText, sigList: sigList)
                             .environmentObject(appDataStore)
                     }
                 }
