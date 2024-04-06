@@ -26,7 +26,12 @@ struct ExploreEventView: View {
     
     var body: some View {
         VStack {
-            EventListView(eventList: filteredEventList)
+            if filteredEventList.isEmpty {
+                Spacer()
+            }
+            else {
+                EventListView(eventList: filteredEventList)
+            }
         }
     }
 }

@@ -10,7 +10,6 @@ import Foundation
 class AppDataStore: ObservableObject {
     @Published var currentActiveUser: User?
 
-    
     @Published var users: [User]
     @Published var sigs: [SIG]
     @Published var events: [EventSIG]

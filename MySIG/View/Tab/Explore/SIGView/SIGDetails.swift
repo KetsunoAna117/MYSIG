@@ -66,11 +66,12 @@ struct SIGDetails: View {
                 // Join SIG
             }, label: {
                 Text("Subscribe notification")
-                    .padding(.horizontal, 50)
+                    .frame(maxWidth: .infinity)
                     .padding(.vertical, 10)
             })
             .buttonStyle(.borderedProminent)
             .padding(.top, 10)
+            .padding(.horizontal, 20)
         }
         .padding(.vertical, 16)
         .navigationTitle("SIG Profile")
