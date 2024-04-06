@@ -16,6 +16,10 @@
 		3A47AE462BC1837E00073D75 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE452BC1837E00073D75 /* NotificationView.swift */; };
 		3A47AE4B2BC1865E00073D75 /* NotificationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE4A2BC1865E00073D75 /* NotificationListView.swift */; };
 		3A47AE4D2BC1869A00073D75 /* NotificationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE4C2BC1869A00073D75 /* NotificationRowView.swift */; };
+		3A47AE522BC1A04000073D75 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE4E2BC1A03F00073D75 /* EditProfileView.swift */; };
+		3A47AE532BC1A04000073D75 /* JoinedSIGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE4F2BC1A03F00073D75 /* JoinedSIGView.swift */; };
+		3A47AE542BC1A04000073D75 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE502BC1A04000073D75 /* ProfileView.swift */; };
+		3A47AE552BC1A04000073D75 /* PastEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE512BC1A04000073D75 /* PastEventView.swift */; };
 		3A8C74292BBD4A4100CE1D58 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C74282BBD4A4100CE1D58 /* ModelData.swift */; };
 		3A8C742B2BBD4A6E00CE1D58 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C742A2BBD4A6E00CE1D58 /* User.swift */; };
 		3A8C742D2BBD4C1400CE1D58 /* SIG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C742C2BBD4C1400CE1D58 /* SIG.swift */; };
@@ -23,7 +27,6 @@
 		3A8C74312BBD4DED00CE1D58 /* SIGNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C74302BBD4DED00CE1D58 /* SIGNotification.swift */; };
 		3A8C74352BBD542300CE1D58 /* BookedEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C74342BBD542300CE1D58 /* BookedEventView.swift */; };
 		3A8C74372BBD54D800CE1D58 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C74362BBD54D800CE1D58 /* ExploreView.swift */; };
-		3A8C74392BBD54ED00CE1D58 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C74382BBD54ED00CE1D58 /* ProfileView.swift */; };
 		3A8C743B2BBD56C800CE1D58 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C743A2BBD56C800CE1D58 /* Extension.swift */; };
 		3A8C743E2BBD5F8900CE1D58 /* EventCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C743D2BBD5F8900CE1D58 /* EventCardView.swift */; };
 		3AE461512BBF876B005FB89E /* SIGCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE461502BBF876B005FB89E /* SIGCardView.swift */; };
@@ -45,6 +48,10 @@
 		3A47AE452BC1837E00073D75 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		3A47AE4A2BC1865E00073D75 /* NotificationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListView.swift; sourceTree = "<group>"; };
 		3A47AE4C2BC1869A00073D75 /* NotificationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRowView.swift; sourceTree = "<group>"; };
+		3A47AE4E2BC1A03F00073D75 /* EditProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		3A47AE4F2BC1A03F00073D75 /* JoinedSIGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinedSIGView.swift; sourceTree = "<group>"; };
+		3A47AE502BC1A04000073D75 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		3A47AE512BC1A04000073D75 /* PastEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastEventView.swift; sourceTree = "<group>"; };
 		3A8C74282BBD4A4100CE1D58 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		3A8C742A2BBD4A6E00CE1D58 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A8C742C2BBD4C1400CE1D58 /* SIG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIG.swift; sourceTree = "<group>"; };
@@ -52,7 +59,6 @@
 		3A8C74302BBD4DED00CE1D58 /* SIGNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIGNotification.swift; sourceTree = "<group>"; };
 		3A8C74342BBD542300CE1D58 /* BookedEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedEventView.swift; sourceTree = "<group>"; };
 		3A8C74362BBD54D800CE1D58 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
-		3A8C74382BBD54ED00CE1D58 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3A8C743A2BBD56C800CE1D58 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		3A8C743D2BBD5F8900CE1D58 /* EventCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardView.swift; sourceTree = "<group>"; };
 		3AE461502BBF876B005FB89E /* SIGCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIGCardView.swift; sourceTree = "<group>"; };
@@ -137,6 +143,17 @@
 			path = Notification;
 			sourceTree = "<group>";
 		};
+		3A47AE562BC1A04600073D75 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3A47AE4E2BC1A03F00073D75 /* EditProfileView.swift */,
+				3A47AE4F2BC1A03F00073D75 /* JoinedSIGView.swift */,
+				3A47AE512BC1A04000073D75 /* PastEventView.swift */,
+				3A47AE502BC1A04000073D75 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		3A8C74262BBD4A0E00CE1D58 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,9 +229,9 @@
 		3AFF018A2BBE4AEE00A4082B /* Tab */ = {
 			isa = PBXGroup;
 			children = (
+				3A47AE562BC1A04600073D75 /* Profile */,
 				3A47AE442BC1836D00073D75 /* BookedEvent */,
 				3AFF018C2BBE986000A4082B /* Explore */,
-				3A8C74382BBD54ED00CE1D58 /* ProfileView.swift */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -306,6 +323,7 @@
 				3A8C742D2BBD4C1400CE1D58 /* SIG.swift in Sources */,
 				3A47AE4B2BC1865E00073D75 /* NotificationListView.swift in Sources */,
 				3A47AE4D2BC1869A00073D75 /* NotificationRowView.swift in Sources */,
+				3A47AE552BC1A04000073D75 /* PastEventView.swift in Sources */,
 				3AFF01902BBE98A300A4082B /* ExploreSIGView.swift in Sources */,
 				3AE461512BBF876B005FB89E /* SIGCardView.swift in Sources */,
 				3A196F6F2BBD726F00109FB7 /* LoginView.swift in Sources */,
@@ -313,15 +331,17 @@
 				3A196F732BBD747F00109FB7 /* Utils.swift in Sources */,
 				3A8C74312BBD4DED00CE1D58 /* SIGNotification.swift in Sources */,
 				3A47AE432BC1511800073D75 /* EventListView.swift in Sources */,
+				3A47AE542BC1A04000073D75 /* ProfileView.swift in Sources */,
 				3AFF018E2BBE987900A4082B /* ExploreEventView..swift in Sources */,
 				3A8C74372BBD54D800CE1D58 /* ExploreView.swift in Sources */,
 				3A47AE412BC14DA700073D75 /* InformationRowView.swift in Sources */,
 				3AEA22032BBB96CE004239F4 /* MySIGApp.swift in Sources */,
+				3A47AE522BC1A04000073D75 /* EditProfileView.swift in Sources */,
 				3A8C743E2BBD5F8900CE1D58 /* EventCardView.swift in Sources */,
 				3A8C742F2BBD4CE900CE1D58 /* EventSIG.swift in Sources */,
+				3A47AE532BC1A04000073D75 /* JoinedSIGView.swift in Sources */,
 				3A8C74352BBD542300CE1D58 /* BookedEventView.swift in Sources */,
 				3A196F6E2BBD726F00109FB7 /* PasswordField.swift in Sources */,
-				3A8C74392BBD54ED00CE1D58 /* ProfileView.swift in Sources */,
 				3A8C74292BBD4A4100CE1D58 /* ModelData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
