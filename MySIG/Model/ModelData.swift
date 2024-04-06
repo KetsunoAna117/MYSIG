@@ -36,7 +36,7 @@ struct Data {
              phoneNumber: "+6287831353012",
              cohort: 7,
              session: "Morning",
-             joinedSigId: [],
+             joinedSigId: [1,2],
              bookedEventId: [2],
              notificationId: [1]
         ),

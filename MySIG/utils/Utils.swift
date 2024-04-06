@@ -80,6 +80,15 @@ struct Utils {
         return appStoreData.sigs
     }
     
+    func getAllSIGByUserId(userId: Int, appStoreData: AppDataStore) -> [SIG] {
+        if let user = appStoreData.currentActiveUser {
+            return user.joinedSigId.compactMap { sigId in
+                getSigById(sigId: sigId, appStoreData: appStoreData)
+            }
+        }
+        return []
+    }
+    
     func calculateOnGoingSigEvent(sig: SIG) -> Int {
         return sig.listEventId.count
     }

@@ -8,21 +8,33 @@
 import SwiftUI
 
 struct JoinedSIGView: View {
+    @EnvironmentObject private var appStoreData: AppDataStore
     @State private var searchText = ""
-    let items = ["Basketball", "Badminton", "Board Game", "Tennis", "Volley"]
-    var filteredItems: [String] {
-        if searchText.isEmpty {
-            return items
-        } else {
-            return items.filter { $0.localizedCaseInsensitiveContains(searchText) }
+    
+    var filteredItems: [SIG] {
+        if let user = appStoreData.currentActiveUser {
+            let sigs = Utils().getAllSIGByUserId(
+                userId: user.id,
+                appStoreData: appStoreData
+            )
+            
+            if searchText.isEmpty {
+                return sigs
+            } else {
+                return sigs.filter { sig in
+                    sig.name.lowercased().contains(searchText.lowercased())
+                }
+            }
         }
+        
+        return []
     }
     
     var body: some View {
         NavigationStack{
             VStack{
                 List(filteredItems, id: \.self) { item in
-                    Text(item)
+                    SIGCardView(sigData: item)
                 }
                 .listStyle(.plain)
                 .searchable(text: $searchText, placement:.navigationBarDrawer(displayMode:.always), prompt: "Search items")
@@ -36,7 +48,10 @@ struct JoinedSIGView: View {
 }
 
 #Preview {
-    JoinedSIGView()
+    NavigationStack {
+        JoinedSIGView()
+            .environmentObject(AppDataStore())
+    }
 }
 
 

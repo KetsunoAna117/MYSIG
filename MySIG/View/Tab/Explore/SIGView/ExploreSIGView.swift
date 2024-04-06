@@ -16,8 +16,7 @@ struct ExploreSIGView: View {
     var filteredSIGList: [SIG] {
         if(searchedText.isEmpty == false){
             return sigList.filter { sig in
-                Utils().getSigById(sigId: sig.id, appStoreData: appDataStore)?
-                    .name.contains(searchedText) ?? false
+                sig.name.lowercased().contains(searchedText.lowercased())
             }
         }
         return sigList

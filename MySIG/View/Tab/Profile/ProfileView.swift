@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var appDataStore: AppDataStore
-        
     
     var body: some View {
         NavigationStack {
