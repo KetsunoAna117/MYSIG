@@ -16,7 +16,7 @@ class AppDataStore: ObservableObject {
     @Published var notifications: [SIGNotification]
 
     init() {
-        self.currentActiveUser = nil
+        self.currentActiveUser = Data().users[0]
         self.users = Data().users
         self.sigs = Data().sigs
         self.events = Data().events

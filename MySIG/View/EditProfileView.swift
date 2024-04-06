@@ -10,110 +10,116 @@ import Combine
 
 
 struct EditProfileView: View {
-    var user: User
+    @EnvironmentObject var appDataStore: AppDataStore
     @State var editedUser: User
     @State var cohortString: String
-
+    @State var showAlert = false
+    @State var navigationLinkIsActive = false
+    
     var body: some View {
         NavigationStack {
-            VStack {
-                Image("ravi-img")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100)
-                    .cornerRadius(50)
-                
-                List {
-                    HStack {
-                        Text("Name")
-                        TextField("Ravi", text: $editedUser.name)
-                    }
+            if let currentActiveUser = appDataStore.currentActiveUser {
+                VStack{
+                    Image("ravi-img")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100)
+                        .cornerRadius(50)
                     
-                    HStack {
-                        Text("Cohort")
-                        TextField("7", text: $cohortString)
+                    List {
+                        HStack {
+                            Text("Name      ")
+                            TextField("Name", text: $editedUser.name)
+                        }
+                        
+                        HStack {
+                            Text("Cohort     ")
+                            TextField("Cohort", text: $cohortString)
+                        }
+                        
+                        HStack {
+                            Text("Session    ")
+                            TextField("Session", text: $editedUser.session)
+                        }
+                        
+                        HStack {
+                            Text("Email        ")
+                            TextField("email", text: $editedUser.email)
+                        }
+                        
+                        HStack {
+                            Text("Phone      ")
+                            TextField("phone", text: $editedUser.phoneNumber)
+                        }
                     }
+                    .listStyle(.plain)
                     
-                    HStack {
-                        Text("Session")
-                        TextField("1", text: $editedUser.session)
-                    }
+                    Button(action: {
+                        //                        appDataStore.currentActiveUser = editedUser
+                        if let cohort = Int(cohortString) {
+                            editedUser.cohort = cohort
+                        }
+                        appDataStore.currentActiveUser = editedUser
+                        showAlert = true
+                        navigationLinkIsActive = true
+                    }, label: {
+                        Text("Save")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 329, height: 50)
+                            .background(Color(red: 1, green: 0.675, blue: 0.36))
+                            .cornerRadius(10)
+                            .padding(.top, 11)
+                    })
                     
-                    HStack {
-                        Text("Email")
-                        TextField("RafiAhmad@mail.id", text: $editedUser.email)
-                    }
+//                    NavigationLink(
+//                        destination: ProfileView().navigationBarBackButtonHidden().navigationBarTitleDisplayMode(.large),
+//                        isActive: $navigationLinkIsActive,
+//                        label: {
+//                            EmptyView()
+//                        }
+//                    )
+//                    .hidden()
                     
-                    HStack {
-                        Text("Phone")
-                        TextField("+62 9870392812", text: $editedUser.phoneNumber)
-                    }
+//                    NavigationLink{
+//                        ProfileView().navigationBarBackButtonHidden().navigationBarTitleDisplayMode(.large)
+//                    } label: {
+//                        Text("Save")
+//                            .font(.headline)
+//                            .foregroundColor(.white)
+//                            .padding()
+//                            .frame(width: 329, height: 50)
+//                            .background(Color(red: 1, green: 0.675, blue: 0.36))
+//                            .cornerRadius(10)
+//                            .padding(.top, 11)
+//                    }
                 }
-                .listStyle(.plain)
-                
-                NavigationLink{
-                    ProfileView(user: editedUser).navigationBarBackButtonHidden().navigationBarTitleDisplayMode(.large)
-                } label: {
-                    Text("Save")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 329, height: 50)
-                        .background(Color(red: 1, green: 0.675, blue: 0.36))
-                        .cornerRadius(10)
-                        .padding(.top, 11)
+                .onAppear {
+                    editedUser = currentActiveUser
+                    cohortString = String(currentActiveUser.cohort)
                 }
+                .navigationTitle("Edit Profile")
+                .navigationBarTitleDisplayMode(.inline)
                 
-//                NavigationLink(destination: ProfileView(user: editedUser).navigationBarBackButtonHidden()) {
-//                    Text("Save")
-//                        .font(.headline)
-//                        .foregroundColor(.white)
-//                        .padding()
-//                        .frame(width: 329, height: 50)
-//                        .background(Color(red: 1, green: 0.675, blue: 0.36))
-//                        .cornerRadius(10)
-//                        .padding(.top, 11)
-//                }
+                
+            } else {
+                Text("No Logged In User")
+                    .navigationTitle("Edit Profile")
+                    .navigationBarTitleDisplayMode(.inline)
             }
-            .onAppear {
-                self.editedUser = user
-                self.cohortString = String(user.cohort)
-            }
-            .onReceive(Just(editedUser)) { _ in
-                // Update the user object in the model with the changes made in the editedUser state variable
-            }
-            .onReceive(Just(cohortString)) { value in
-                if let newCohort = Int(value) {
-                    editedUser.cohort = newCohort
-                }
-            }
+            
         }
-        .navigationTitle("Edit Profile")
-        .navigationBarTitleDisplayMode(.inline)
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Success"), message: Text("Profile updated successfully"), dismissButton: .default(Text("OK")))
+        }
+        //        .navigationDestination(isPresented: $navigationLinkIsActive) {
+        //            ProfileView().navigationBarBackButtonHidden()
+        //        }
     }
 }
 
-struct EditProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditProfileView(user: User(id: 1,
-                                   email: "johndoe@example.com",
-                                   password: "password123",
-                                   name: "John Doe",
-                                   phoneNumber: "+1234567890",
-                                   cohort: 1,
-                                   session: "Morning",
-                                   joinedSigId: [],
-                                   bookedEventId: [],
-                                   notificationId: []),
-                        editedUser: User(id: 1,
-                                         email: "johndoe@example.com",
-                                         password: "password123",
-                                         name: "John Doe",
-                                         phoneNumber: "+1234567890",
-                                         cohort: 1,
-                                         session: "Morning",
-                                         joinedSigId: [],
-                                         bookedEventId: [],
-                                         notificationId: []), cohortString: "7")
-    }
+#Preview {
+    EditProfileView(editedUser : User(id: 9, email: "", password: "", name: "", phoneNumber: "", cohort: 7, session: "", joinedSigId: [0], bookedEventId: [0], notificationId: [0]), cohortString: "")
+        .environmentObject(AppDataStore())
 }
