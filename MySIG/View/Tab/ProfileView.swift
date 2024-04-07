@@ -18,7 +18,7 @@ struct ProfileView: View {
                     .padding(.bottom, 16)
                 if let currentActiveUser = appDataStore.currentActiveUser {
                     HStack{
-                        Image("ravi-img")
+                        Image("\(currentActiveUser.picture)")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
@@ -87,12 +87,12 @@ struct ProfileView: View {
                         
                         Text("Log out")
                             .font(.headline)
-                            .foregroundColor(Color(red: 1, green: 0.675, blue: 0.36))
+                            .foregroundColor(Constants.Orange)
                             .padding()
                             .frame(width: 329, height: 50)
                             .background(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color(red: 1, green: 0.675, blue: 0.36), lineWidth: 2)
+                                    .stroke(Constants.Orange)
                             )
                             .cornerRadius(10)
                             .padding(.top, 111)
