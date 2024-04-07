@@ -10,6 +10,7 @@ import Foundation
 class AppDataStore: ObservableObject {
     @Published var currentActiveUser: User?
 
+    
     @Published var users: [User]
     @Published var sigs: [SIG]
     @Published var events: [EventSIG]
@@ -22,6 +23,7 @@ class AppDataStore: ObservableObject {
         self.events = Data().events
         self.notifications = Data().notification
     }
+    
 }
 
 
@@ -32,17 +34,19 @@ struct Data {
         User(id: 1,
              email: "Johndoe@mail.id",
              password: "123",
+             picture: "john-doe",
              name: "John Doe",
              phoneNumber: "+6287831353012",
              cohort: 7,
              session: "Morning",
-             joinedSigId: [1,2],
+             joinedSigId: [],
              bookedEventId: [2],
              notificationId: [1]
         ),
         User(id: 2,
              email: "jamesrc@mail.id",
              password: "123",
+             picture: "james",
              name: "James RC",
              phoneNumber: "+6287831353012",
              cohort: 7,
@@ -54,6 +58,7 @@ struct Data {
         User(id: 3,
              email: "dea@mail.id",
              password: "123",
+             picture: "dea",
              name: "Dea",
              phoneNumber: "+6287831353012",
              cohort: 7,
@@ -65,6 +70,7 @@ struct Data {
         User(id: 4,
              email: "johan@mail.id",
              password: "123",
+             picture: "johan",
              name: "Johan",
              phoneNumber: "+6287831353012",
              cohort: 7,
@@ -154,7 +160,7 @@ struct Data {
     var notification: [SIGNotification] = [
         SIGNotification(
             id: 1,
-            title: "Jadwal DND baru yang dibuat secara mendadak dan singkat",
+            title: "Jadwal DND baru",
             content: "Siapa yang udah lama pingin main DnD? Ayo tunggu apa lagi mumpung kita ada sesi kedua besok jumat!",
             date: Utils().formatDate(from: "2024-03-28")
         )

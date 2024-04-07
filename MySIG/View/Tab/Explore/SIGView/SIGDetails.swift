@@ -9,7 +9,10 @@ import SwiftUI
 
 struct SIGDetails: View {
     @EnvironmentObject private var appDataStore: AppDataStore
-    var selectedSIG: SIG
+    let selectedSIG: SIG
+    @State private var showModal = false
+    
+    @State private var descDetent = PresentationDetent.medium
     
     var body: some View {
         VStack(alignment: .center) {
@@ -18,18 +21,47 @@ struct SIGDetails: View {
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(.bottom, 1)
+                
                 Text("\(selectedSIG.desc)")
                     .font(.subheadline)
-                    .padding(.bottom, 20)
+                    .foregroundStyle(Color.secondary)
+                    .padding(.bottom, 10)
+                    .lineLimit(4)
+                    .truncationMode(.tail)
+                    .onTapGesture {
+                        self.showModal = true
+                    }
+                    .sheet(isPresented: $showModal) {
+                        NavigationStack {
+                            ScrollView {
+                                Text("\(selectedSIG.desc)")
+                                    .font(.subheadline)
+                                    .foregroundStyle(Color.secondary)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            .navigationTitle("Details")
+                            .navigationBarTitleDisplayMode(.inline)
+                            .padding(.horizontal, 16)
+                        }
+                        .presentationDetents(
+                            [.medium, .large],
+                            selection: $descDetent
+                        )
+                    }
                 
                 if let user = Utils().getUserFromSIG(
                     sigData: selectedSIG,
                     appStoreData: appDataStore) {
                     
-                    InformationRowView(
-                        informationType: "PIC",
-                        informationData: user.name
-                    )
+                    List {
+                        InformationRowView(
+                            informationIcon: "person.fill",
+                            informationType: "PIC",
+                            informationData: user.name
+                        )
+                    }
+                    .listStyle(.plain)
+                    .frame(maxHeight: 45)
                 }
                 
                 VStack(alignment: .leading, content: {
@@ -57,7 +89,7 @@ struct SIGDetails: View {
                 .padding(.top, 30)
                 
             }
-            .padding(.horizontal, 24)
+            .padding(.horizontal, 20)
             
             
             Divider()
@@ -81,7 +113,7 @@ struct SIGDetails: View {
 
 #Preview {
     NavigationStack{
-        SIGDetails(selectedSIG: AppDataStore().sigs[3])
+        SIGDetails(selectedSIG: AppDataStore().sigs[0])
             .environmentObject(AppDataStore())
     }
 }

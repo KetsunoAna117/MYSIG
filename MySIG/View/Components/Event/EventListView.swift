@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EventListView: View {
+    @EnvironmentObject private var appStoreData: AppDataStore
     let eventList: [EventSIG]
     
     var body: some View {
@@ -15,22 +16,34 @@ struct EventListView: View {
             List {
                 ForEach(eventList, id: \.self) { anEvent in
                     EventCardView(event: anEvent)
-                        .environmentObject(AppDataStore())
+                        .environmentObject(appStoreData)
+                        .background(
+                            NavigationLink(destination: {
+                                EventDetails(selectedEvent: anEvent)
+                                    .environmentObject(appStoreData)
+                            }, label: {
+                                Text("View Details")
+                                    .foregroundColor(.blue)
+                                    .font(.subheadline)
+                            })
+                        )
                 }
-                //            .listRowInsets(EdgeInsets())
             }
+            .frame(maxHeight: .infinity)
             .listStyle(.plain)
-            .listRowSpacing(10)
         }
     }
 }
 
 #Preview {
-    EventListView(
-        eventList: Utils().getAllEventFromListId(
-            eventIdList: [1, 2, 3, 4],
-            appStoreData: AppDataStore()
+    NavigationStack {
+        EventListView(
+            eventList: Utils().getAllEventFromListId(
+                eventIdList: [1, 2, 3, 4],
+                appStoreData: AppDataStore()
+            )
         )
-    )
+        .environmentObject(AppDataStore())
+    }
     
 }

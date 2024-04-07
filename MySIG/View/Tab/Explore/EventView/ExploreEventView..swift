@@ -37,6 +37,8 @@ struct ExploreEventView: View {
 }
 
 #Preview {
-    ExploreEventView(searchedText: .constant(""), eventList: AppDataStore().events)
-        .environmentObject(AppDataStore())
+    NavigationStack {
+        ExploreEventView(searchedText: .constant(""), eventList: AppDataStore().events)
+            .environmentObject(AppDataStore())
+    }
 }

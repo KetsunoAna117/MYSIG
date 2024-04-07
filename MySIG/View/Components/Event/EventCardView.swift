@@ -11,6 +11,7 @@ struct EventCardView: View {
     @EnvironmentObject private var appDataStore: AppDataStore
     let event: EventSIG
     
+    
     var body: some View {
         let time = event.time.components(separatedBy: "-")
         let dayName: String = String(Utils().getDayName(from: event.date ?? Date.now).prefix(3))
@@ -26,7 +27,7 @@ struct EventCardView: View {
                 .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 1)
             
             HStack(alignment: VerticalAlignment.center){
-                VStack {
+                VStack() {
                     ZStack {
                         if let user = appDataStore.currentActiveUser {
                             let userBookedThisEvent = Utils().checkIfUserBookEvent(

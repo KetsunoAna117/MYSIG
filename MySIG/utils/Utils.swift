@@ -21,6 +21,27 @@ struct Utils {
         return appStoreData.users.first(where: { $0.id == sigData.picId })
     }
     
+    func getUsersRegisteredForEvent(eventData: EventSIG, appStoreData: AppDataStore) -> [User] {
+        var registeredUsers: [User] = []
+        
+        for userId in eventData.listRegisteredParticipantId {
+            if let user = appStoreData.users.first(where: { $0.id == userId }) {
+                registeredUsers.append(user)
+            }
+        }
+        
+        return registeredUsers
+    }
+    
+    func validateIfUserIsSIGPIC(userId: Int, sigId: Int, appStoreData: AppDataStore) -> Bool {
+        let sig = getSigById(sigId: sigId, appStoreData: appStoreData)
+        if(sig?.picId == userId){
+            return true
+        }
+        return false
+    }
+    
+    
     // DATE
     func formatDate(from date: String) -> Date?{
         let dateFormatter = DateFormatter()

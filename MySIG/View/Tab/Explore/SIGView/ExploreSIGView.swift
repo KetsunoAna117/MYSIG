@@ -26,11 +26,11 @@ struct ExploreSIGView: View {
         List {
             ForEach(filteredSIGList, id: \.self) { sig in
                 SIGCardView(sigData: sig)
-//                    .listRowInsets(EdgeInsets())
                     .environmentObject(appDataStore)
                     .background(
                         NavigationLink(
-                            destination: SIGDetails(selectedSIG: sig),
+                            destination: SIGDetails(selectedSIG: sig)
+                                .environmentObject(appDataStore),
                             label: {
                                 Text("View Details")
                                     .foregroundColor(.blue)

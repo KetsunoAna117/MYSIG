@@ -120,6 +120,6 @@ struct EditProfileView: View {
 }
 
 #Preview {
-    EditProfileView(editedUser : User(id: 9, email: "", password: "", name: "", phoneNumber: "", cohort: 7, session: "", joinedSigId: [0], bookedEventId: [0], notificationId: [0]), cohortString: "")
+    EditProfileView(editedUser : AppDataStore().users[0], cohortString: "")
         .environmentObject(AppDataStore())
 }
