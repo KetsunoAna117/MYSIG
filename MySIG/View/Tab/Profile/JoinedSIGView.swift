@@ -33,14 +33,28 @@ struct JoinedSIGView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                List(filteredItems, id: \.self) { item in
-                    SIGCardView(sigData: item)
+                List {
+                    ForEach(filteredItems, id: \.self) { sig in
+                        SIGCardView(sigData: sig)
+                            .environmentObject(appStoreData)
+                            .background(
+                                NavigationLink(
+                                    destination: SIGDetails(selectedSIG: sig)
+                                        .environmentObject(appStoreData),
+                                    label: {
+                                        Text("View Details")
+                                            .foregroundColor(.blue)
+                                            .font(.subheadline)
+                                    }
+                                )
+                            )
+                    }
                 }
                 .listStyle(.plain)
-                .searchable(text: $searchText, placement:.navigationBarDrawer(displayMode:.always), prompt: "Search items")
-                
+                .listRowSpacing(10)
                 Spacer()
             }
+            .searchable(text: $searchText, placement:.navigationBarDrawer(displayMode:.always), prompt: "Search items")
         }
         .navigationTitle("Subscribed SIG")
         .navigationBarTitleDisplayMode(.inline)

@@ -30,7 +30,9 @@ struct ExploreEventView: View {
                 Spacer()
             }
             else {
-                EventListView(eventList: filteredEventList)
+                ScrollView {
+                    EventListView(eventList: filteredEventList)
+                }
             }
         }
     }

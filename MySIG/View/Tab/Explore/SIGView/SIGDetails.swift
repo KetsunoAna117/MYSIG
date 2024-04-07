@@ -16,80 +16,82 @@ struct SIGDetails: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            VStack (alignment: .leading) {
-                Text("\(selectedSIG.name.capitalized)")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding(.bottom, 1)
-                
-                Text("\(selectedSIG.desc)")
-                    .font(.subheadline)
-                    .foregroundStyle(Color.secondary)
-                    .padding(.bottom, 10)
-                    .lineLimit(4)
-                    .truncationMode(.tail)
-                    .onTapGesture {
-                        self.showModal = true
-                    }
-                    .sheet(isPresented: $showModal) {
-                        NavigationStack {
-                            ScrollView {
-                                Text("\(selectedSIG.desc)")
-                                    .font(.subheadline)
-                                    .foregroundStyle(Color.secondary)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            .navigationTitle("Details")
-                            .navigationBarTitleDisplayMode(.inline)
-                            .padding(.horizontal, 16)
-                        }
-                        .presentationDetents(
-                            [.medium, .large],
-                            selection: $descDetent
-                        )
-                    }
-                
-                if let user = Utils().getUserFromSIG(
-                    sigData: selectedSIG,
-                    appStoreData: appDataStore) {
-                    
-                    List {
-                        InformationRowView(
-                            informationIcon: "person.fill",
-                            informationType: "PIC",
-                            informationData: user.name
-                        )
-                    }
-                    .listStyle(.plain)
-                    .frame(maxHeight: 45)
-                }
-                
-                VStack(alignment: .leading, content: {
-                    Text("Event List")
-                        .font(.title3)
+            ScrollView {
+                VStack (alignment: .leading) {
+                    Text("\(selectedSIG.name.capitalized)")
+                        .font(.title)
                         .fontWeight(.bold)
+                        .padding(.bottom, 1)
                     
-                    VStack(alignment: .center) {
-                        let eventList = Utils().getAllEventFromListId(
-                            eventIdList: selectedSIG.listEventId,
-                            appStoreData: AppDataStore()
-                        )
-                        
-                        if eventList.isEmpty {
-                            Text("There's no event at the moment...")
-                                .font(.footnote)
-                                .foregroundStyle(Color.gray)
-                            Spacer()
-                        } else {
-                            EventListView(eventList: eventList)
+                    Text("\(selectedSIG.desc)")
+                        .font(.subheadline)
+                        .foregroundStyle(Color.secondary)
+                        .padding(.bottom, 10)
+                        .lineLimit(4)
+                        .truncationMode(.tail)
+                        .onTapGesture {
+                            self.showModal = true
                         }
+                        .sheet(isPresented: $showModal) {
+                            NavigationStack {
+                                ScrollView {
+                                    Text("\(selectedSIG.desc)")
+                                        .font(.subheadline)
+                                        .foregroundStyle(Color.secondary)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                                .navigationTitle("Details")
+                                .navigationBarTitleDisplayMode(.inline)
+                                .padding(.horizontal, 16)
+                            }
+                            .presentationDetents(
+                                [.medium, .large],
+                                selection: $descDetent
+                            )
+                        }
+                    
+                    if let user = Utils().getUserFromSIG(
+                        sigData: selectedSIG,
+                        appStoreData: appDataStore) {
                         
+                        List {
+                            InformationRowView(
+                                informationIcon: "person.fill",
+                                informationType: "PIC",
+                                informationData: user.name
+                            )
+                        }
+                        .listStyle(.plain)
+                        .frame(height: 45)
                     }
-                })
-                .padding(.top, 30)
-                
+                    
+                    VStack(alignment: .leading, content: {
+                        Text("Event List")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                        
+                        VStack(alignment: .center) {
+                            let eventList = Utils().getAllEventFromListId(
+                                eventIdList: selectedSIG.listEventId,
+                                appStoreData: AppDataStore()
+                            )
+                            
+                            if eventList.isEmpty {
+                                Text("There's no event at the moment...")
+                                    .font(.footnote)
+                                    .foregroundStyle(Color.gray)
+                                Spacer()
+                            } else {
+                                EventListView(eventList: eventList)
+                            }
+                            
+                        }
+                    })
+                    .padding(.top, 30)
+                    
+                }
+                .padding(.horizontal, 20)
             }
-            .padding(.horizontal, 20)
             
             
             Divider()

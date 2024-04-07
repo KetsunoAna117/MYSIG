@@ -13,24 +13,16 @@ struct EventListView: View {
     
     var body: some View {
         if eventList.isEmpty == false {
-            List {
+            VStack {
                 ForEach(eventList, id: \.self) { anEvent in
-                    EventCardView(event: anEvent)
-                        .environmentObject(appStoreData)
-                        .background(
-                            NavigationLink(destination: {
-                                EventDetails(selectedEvent: anEvent)
-                                    .environmentObject(appStoreData)
-                            }, label: {
-                                Text("View Details")
-                                    .foregroundColor(.blue)
-                                    .font(.subheadline)
-                            })
-                        )
+                    NavigationLink(destination: {
+                        EventDetails(selectedEvent: anEvent)
+                            .environmentObject(appStoreData)
+                    }, label: {
+                        EventCardView(event: anEvent)
+                    })
                 }
             }
-            .frame(maxHeight: .infinity)
-            .listStyle(.plain)
         }
     }
 }

@@ -103,6 +103,7 @@ struct EventCardView: View {
                 VStack (alignment: .leading){
                     Spacer()
                     Text(event.name)
+                        .multilineTextAlignment(.leading)
                         .font(.title2)
                         .fontWeight(.bold)
                         .foregroundColor(.black)
@@ -120,6 +121,7 @@ struct EventCardView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 12, height: 12)
                                 Text("SIG \(foundSIG.name)")
+                                    .multilineTextAlignment(.leading)
                                     .font(Font.custom("SF Pro", size: 12))
                                     .foregroundColor(.black)
                                     .frame(width: 150, height: 11, alignment: .leading)
@@ -132,6 +134,7 @@ struct EventCardView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 12, height: 12)
                             Text(event.location)
+                                .multilineTextAlignment(.leading)
                                 .lineLimit(2)
                                 .truncationMode(.tail)
                                 .font(Font.custom("SF Pro", size: 12))

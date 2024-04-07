@@ -15,38 +15,40 @@ struct BookedEventView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                if let currentActiveUser = appDataStore.currentActiveUser {
-                    let eventList = Utils().getAllEventFromListId(
-                        eventIdList: currentActiveUser.bookedEventId,
-                        appStoreData: appDataStore
-                    )
-                    EventListView(eventList: eventList)
+            ScrollView {
+                VStack {
+                    if let currentActiveUser = appDataStore.currentActiveUser {
+                        let eventList = Utils().getAllEventFromListId(
+                            eventIdList: currentActiveUser.bookedEventId,
+                            appStoreData: appDataStore
+                        )
+                        EventListView(eventList: eventList)
+                    }
                 }
-            }
-            .navigationTitle("Booked Event")
-            .padding(.top, 10)
-            .listStyle(.plain)
-            .listRowSpacing(10)
-            .toolbar(content: {
-                Button(action: {
-                    showNotification.toggle()
-                }, label: {
-                    if(haveNotificaton == false){
-                        Image(systemName: "bell")
-                    }
-                    else{
-                        Image(systemName: "bell.badge")
-                    }
+                .navigationTitle("Booked Event")
+                .padding(.top, 10)
+                .listStyle(.plain)
+                .listRowSpacing(10)
+                .toolbar(content: {
+                    Button(action: {
+                        showNotification.toggle()
+                    }, label: {
+                        if(haveNotificaton == false){
+                            Image(systemName: "bell")
+                        }
+                        else{
+                            Image(systemName: "bell.badge")
+                        }
+                    })
                 })
+                .sheet(isPresented: $showNotification, content: {
+                    NotificationView()
+                        .presentationDetents(
+                            [.medium, .large],
+                            selection: $notificationDetent
+                        )
             })
-            .sheet(isPresented: $showNotification, content: {
-                NotificationView()
-                    .presentationDetents(
-                        [.medium, .large],
-                        selection: $notificationDetent
-                    )
-            })
+            }
             //        .padding(.horizontal, 16)
         }
         .onChange(
