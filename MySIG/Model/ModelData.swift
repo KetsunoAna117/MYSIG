@@ -30,7 +30,33 @@ class AppDataStore: ObservableObject {
 struct Data {
     let utils = Utils()
     
-    var users: [User] = [
+//    mutating func addEventToUser(user: User, event: EventSIG) {
+//        var userId = Int(user.id)
+//        var eventId = Int(event.id)
+//        
+//        if let userIndex = users.firstIndex(where: { $0.id == userId}) {
+//            if let eventIndex = events.firstIndex(where: { $0.id == eventId}){
+//                users[userIndex].bookedEventId.append(eventId)
+//                events[eventIndex].listRegisteredParticipantId.append(userId)
+//            }
+//        }
+//    }
+//    
+//    mutating func removeEventFromUser(user: User, event: EventSIG) {
+//        var userId = Int(user.id)
+//        var eventId = Int(event.id)
+//        
+//        if let userIndex = users.firstIndex(where: { $0.id == userId}) {
+//            if let eventIndex = events.firstIndex(where: { $0.id == eventId}){
+//                
+//                users[userIndex].bookedEventId = users[userIndex].bookedEventId.filter { $0 != eventId }
+//                events[eventIndex].listRegisteredParticipantId = events[eventIndex].listRegisteredParticipantId.filter { $0 != userId }
+//                
+//            }
+//        }
+//    }
+    
+     var users: [User] = [
         User(id: 1,
              email: "Johndoe@mail.id",
              password: "123",

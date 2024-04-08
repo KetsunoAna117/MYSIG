@@ -12,15 +12,17 @@ struct EventListView: View {
     let eventList: [EventSIG]
     
     var body: some View {
-        if eventList.isEmpty == false {
-            VStack {
-                ForEach(eventList, id: \.self) { anEvent in
-                    NavigationLink(destination: {
-                        EventDetails(selectedEvent: anEvent)
-                            .environmentObject(appStoreData)
-                    }, label: {
-                        EventCardView(event: anEvent)
-                    })
+        if let currentActiveUser = appStoreData.currentActiveUser{
+            if eventList.isEmpty == false {
+                VStack {
+                    ForEach(eventList, id: \.self) { anEvent in
+                        NavigationLink(destination: {
+                            EventDetails(selectedEvent: anEvent, currentActiveUser: currentActiveUser)
+                                .environmentObject(appStoreData)
+                        }, label: {
+                            EventCardView(event: anEvent)
+                        })
+                    }
                 }
             }
         }

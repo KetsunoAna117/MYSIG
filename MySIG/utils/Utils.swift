@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Utils {
     // USER
@@ -39,6 +40,23 @@ struct Utils {
             return true
         }
         return false
+    }
+    
+    func addEventToUser(_ user: Binding<User>, _ event: Binding<EventSIG>) {
+        let userId = Int(user.wrappedValue.id)
+        let eventId = Int(event.wrappedValue.id)
+        
+        user.wrappedValue.bookedEventId.append(eventId)
+        event.wrappedValue.listRegisteredParticipantId.append(userId)
+    }
+    
+    func removeEventFromUser(_ user: Binding<User>, _ event: Binding<EventSIG>) {
+        let userId = Int(user.wrappedValue.id)
+        let eventId = Int(event.wrappedValue.id)
+        
+        user.wrappedValue.bookedEventId = user.wrappedValue.bookedEventId.filter { $0 != eventId }
+        event.wrappedValue.listRegisteredParticipantId = event.wrappedValue.listRegisteredParticipantId.filter { $0 != userId }
+        
     }
     
     
