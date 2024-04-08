@@ -11,6 +11,7 @@ import Combine
 
 struct EditProfileView: View {
     @EnvironmentObject var appDataStore: AppDataStore
+    @Environment (\.dismiss) var dismiss
     @State var editedUser: User
     @State var cohortString: String
     @State var showAlert = false
@@ -20,7 +21,7 @@ struct EditProfileView: View {
         NavigationStack {
             if let currentActiveUser = appDataStore.currentActiveUser {
                 VStack{
-                    Image("ravi-img")
+                    Image("\(editedUser.picture)")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100, height: 100)
@@ -72,28 +73,6 @@ struct EditProfileView: View {
                             .cornerRadius(10)
                             .padding(.top, 11)
                     })
-                    
-//                    NavigationLink(
-//                        destination: ProfileView().navigationBarBackButtonHidden().navigationBarTitleDisplayMode(.large),
-//                        isActive: $navigationLinkIsActive,
-//                        label: {
-//                            EmptyView()
-//                        }
-//                    )
-//                    .hidden()
-                    
-//                    NavigationLink{
-//                        ProfileView().navigationBarBackButtonHidden().navigationBarTitleDisplayMode(.large)
-//                    } label: {
-//                        Text("Save")
-//                            .font(.headline)
-//                            .foregroundColor(.white)
-//                            .padding()
-//                            .frame(width: 329, height: 50)
-//                            .background(Color(red: 1, green: 0.675, blue: 0.36))
-//                            .cornerRadius(10)
-//                            .padding(.top, 11)
-//                    }
                 }
                 .onAppear {
                     editedUser = currentActiveUser
@@ -111,11 +90,10 @@ struct EditProfileView: View {
             
         }
         .alert(isPresented: $showAlert) {
-            Alert(title: Text("Success"), message: Text("Profile updated successfully"), dismissButton: .default(Text("OK")))
+            Alert(title: Text("Success"), message: Text("Profile updated successfully"), dismissButton: .default(Text("OK")){
+                dismiss()
+            })
         }
-        //        .navigationDestination(isPresented: $navigationLinkIsActive) {
-        //            ProfileView().navigationBarBackButtonHidden()
-        //        }
     }
 }
 

@@ -9,12 +9,16 @@ import SwiftUI
 
 struct EventDetails: View {
     @EnvironmentObject private var appStoreData: AppDataStore
-    let selectedEvent: EventSIG
+    @State var selectedEvent: EventSIG
+    @State var currentActiveUser: User
     
     @State private var showModal = false
     @State private var descDetent = PresentationDetent.medium
     @State private var isUserAskForNotified = false
     @State private var isInfoButtonClicked = false
+    
+    @State private var isBooked = false
+    @State private var buttonText = "Book This Event"
     
     var body: some View {
         let dayName: String = String(Utils().getDayName(from: selectedEvent.date ?? Date.now).prefix(3))
@@ -189,15 +193,37 @@ struct EventDetails: View {
             .padding(.horizontal, 20)
             
             Button(action: {
-                // Join SIG
+                if (!isBooked){
+                    Utils().addEventToUser($currentActiveUser, $selectedEvent)
+                    buttonText = "Unbook Event"
+                } else {
+                    Utils().removeEventFromUser($currentActiveUser, $selectedEvent)
+                    buttonText = "Book This Event"
+                }
+                
+                isBooked.toggle()
+                
             }, label: {
-                Text("Booked This Event")
+                
+                Text("\(buttonText)")
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 10)
             })
             .buttonStyle(.borderedProminent)
+            .tint(isBooked ? Constants.Purple : Constants.Orange)
             .padding(.top, 10)
             .padding(.horizontal, 20)
+            .onAppear{
+                if let currentActiveUser = appStoreData.currentActiveUser {
+                    isBooked = Utils().checkIfUserBookEvent(event: selectedEvent, user: currentActiveUser)
+                }
+                
+                if(isBooked){
+                    buttonText = "Unbook Event"
+                } else {
+                    buttonText = "Book This Event"
+                }
+            }
             
         }
         .padding(.vertical, 16)
@@ -208,7 +234,7 @@ struct EventDetails: View {
 
 #Preview {
     NavigationStack {
-        EventDetails(selectedEvent: AppDataStore().events[0])
+        EventDetails(selectedEvent: AppDataStore().events[0], currentActiveUser: AppDataStore().users[0])
             .environmentObject(AppDataStore())
     }
 }

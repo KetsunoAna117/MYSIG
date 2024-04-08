@@ -17,7 +17,7 @@ struct ProfileView: View {
                     .padding(.bottom, 16)
                 if let currentActiveUser = appDataStore.currentActiveUser {
                     HStack{
-                        Image("ravi-img")
+                        Image("\(currentActiveUser.picture)")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
