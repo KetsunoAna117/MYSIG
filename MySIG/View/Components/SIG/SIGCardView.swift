@@ -32,7 +32,7 @@ struct SIGCardView: View {
                     
                     HStack {
                         Image(systemName: "person")
-                        if let user = Utils().getUserFromSIG(sigData: sigData, appStoreData: appStoreData) {
+                        if let user = Utils().getUserFromSIG(sigId: sigData.id, appStoreData: appStoreData) {
                             Text("\(user.name)")
                                 .font(.footnote)
                                 .foregroundStyle(Color.gray)
@@ -43,7 +43,7 @@ struct SIGCardView: View {
                 
                 Spacer()
                 
-                let eventTotal = Utils().calculateOnGoingSigEvent(sig: sigData)
+                let eventTotal = Utils().calculateOnGoingSigEvent(sigId: sigData.id, appStoreData: appStoreData)
                 
                 if(eventTotal > 0){
                     ZStack(alignment: .center) {

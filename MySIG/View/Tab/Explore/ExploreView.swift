@@ -43,7 +43,7 @@ struct ExploreView: View {
                     case .event:
                         if let user = appDataStore.currentActiveUser {
                             let eventList = Utils().getEventListWithoutTheUser(
-                                user: user,
+                                userId: user.id,
                                 appStoreData: appDataStore)
                             ExploreEventView(searchedText: $searchText, eventList: eventList)
                                 .environmentObject(appDataStore)

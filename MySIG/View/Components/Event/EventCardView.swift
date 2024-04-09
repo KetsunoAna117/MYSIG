@@ -11,6 +11,7 @@ struct EventCardView: View {
     @EnvironmentObject private var appDataStore: AppDataStore
     let event: EventSIG
     
+    @State private var userBookedThisEvent: Bool = false
     
     var body: some View {
         let time = event.time.components(separatedBy: "-")
@@ -29,17 +30,11 @@ struct EventCardView: View {
             HStack(alignment: VerticalAlignment.center){
                 VStack() {
                     ZStack {
-                        if let user = appDataStore.currentActiveUser {
-                            let userBookedThisEvent = Utils().checkIfUserBookEvent(
-                                event: event,
-                                user: user
-                            )
-                            
-                            Image(userBookedThisEvent ? "EventCard-TimeBackground-Booked" : "EventCard-TimeBackground")
-                                .resizable()
-                                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                .frame(maxWidth: 30, maxHeight: 35)
-                        }
+                        Image(userBookedThisEvent ? "EventCard-TimeBackground-Booked" : "EventCard-TimeBackground")
+                            .resizable()
+                            .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                            .frame(maxWidth: 30, maxHeight: 35)
+                        
                         Text(time[0])
                             .font(
                                 Font.custom("SF Pro Rounded", size: 12)
@@ -52,40 +47,33 @@ struct EventCardView: View {
                     }
                     
                     VStack(spacing: 1) {
-                        if let user = appDataStore.currentActiveUser {
-                            let userBookedThisEvent = Utils().checkIfUserBookEvent(
-                                event: event,
-                                user: user
+                        Text(dayName.uppercased())
+                            .font(
+                                Font.custom("SF Pro Rounded", size: 12)
+                                    .weight(.bold)
                             )
-                            
-                            Text(dayName.uppercased())
-                                .font(
-                                    Font.custom("SF Pro Rounded", size: 12)
-                                        .weight(.bold)
-                                )
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(userBookedThisEvent ? Constants.Purple : .accentColor)
-                                .frame(width: 33.42199, height: 15, alignment: .center)
-                            
-                            Text("\(day)")
-                                .font(
-                                    Font.custom("SF Pro Rounded", size: 36)
-                                        .weight(.bold)
-                                )
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(userBookedThisEvent ? Constants.Purple : .accentColor)
-                                .frame(width: 59.96298, height: 34, alignment: .center)
-                            
-                            Text("\(month)")
-                                .font(
-                                    Font.custom("SF Pro Rounded", size: 12)
-                                        .weight(.bold)
-                                )
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(userBookedThisEvent ? Constants.Purple : .accentColor)
-                                .frame(width: 38.33698, height: 15, alignment: .center)
-                            
-                        }
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(userBookedThisEvent ? Constants.Purple : .accentColor)
+                            .frame(width: 33.42199, height: 15, alignment: .center)
+                        
+                        Text("\(day)")
+                            .font(
+                                Font.custom("SF Pro Rounded", size: 36)
+                                    .weight(.bold)
+                            )
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(userBookedThisEvent ? Constants.Purple : .accentColor)
+                            .frame(width: 59.96298, height: 34, alignment: .center)
+                        
+                        Text("\(month)")
+                            .font(
+                                Font.custom("SF Pro Rounded", size: 12)
+                                    .weight(.bold)
+                            )
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(userBookedThisEvent ? Constants.Purple : .accentColor)
+                            .frame(width: 38.33698, height: 15, alignment: .center)
+                        
                     }
                     
                 }
@@ -148,33 +136,41 @@ struct EventCardView: View {
                 Spacer()
             }
             
-            if let user = appDataStore.currentActiveUser {
-                let userBookedThisEvent = Utils().checkIfUserBookEvent(
-                    event: event,
-                    user: user
-                )
-                
-                let remainingSlot = Utils().calculateRemainingSlot(event: event)
-                if userBookedThisEvent == false &&  remainingSlot > 0 {
-                    ZStack {
-                        Image("EventCard-SlotBackground")
-                            .resizable()
-                            .frame(
-                                maxWidth: 125,
-                                maxHeight: 30,
-                                alignment:.leading
-                            )
-                        
-                        Text("\(remainingSlot) remaining slot")
-                            .font(
-                                Font.custom("SF Pro", size: 12)
-                                    .weight(.medium)
-                            )
-                            .foregroundColor(Color.white)
-                    }
-                    .padding(.trailing, 5)
+            let remainingSlot = Utils().calculateRemainingSlot(
+                eventId: event.id,
+                appStoreData: appDataStore
+            )
+            if userBookedThisEvent == false &&  remainingSlot > 0 {
+                ZStack {
+                    Image("EventCard-SlotBackground")
+                        .resizable()
+                        .frame(
+                            maxWidth: 125,
+                            maxHeight: 30,
+                            alignment:.leading
+                        )
+                    
+                    Text("\(remainingSlot) remaining slot")
+                        .font(
+                            Font.custom("SF Pro", size: 12)
+                                .weight(.medium)
+                        )
+                        .foregroundColor(Color.white)
                 }
+                .padding(.trailing, 5)
             }
+
+            
+        }
+        .onAppear(){
+            if let user = appDataStore.currentActiveUser {
+                userBookedThisEvent = Utils().checkIfUserBookEvent(
+                    eventId: event.id,
+                    userId: user.id,
+                    appStoreData: appDataStore
+                )
+            }
+            
         }
         .frame(height: 160)
     }

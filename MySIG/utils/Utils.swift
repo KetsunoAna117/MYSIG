@@ -18,20 +18,20 @@ struct Utils {
         return appStoreData.users.first(where: { $0.id == id })
     }
     
-    func getUserFromSIG(sigData: SIG, appStoreData: AppDataStore) -> User? {
-        return appStoreData.users.first(where: { $0.id == sigData.picId })
+    func getUserFromSIG(sigId: Int, appStoreData: AppDataStore) -> User? {
+        if let sig = getSigById(sigId: sigId, appStoreData: appStoreData) {
+            return appStoreData.users.first(where: { $0.id == sig.picId })
+        }
+        return nil
     }
     
-    func getUsersRegisteredForEvent(eventData: EventSIG, appStoreData: AppDataStore) -> [User] {
-        var registeredUsers: [User] = []
-        
-        for userId in eventData.listRegisteredParticipantId {
-            if let user = appStoreData.users.first(where: { $0.id == userId }) {
-                registeredUsers.append(user)
+    func getUsersRegisteredForEvent(eventId: Int, appStoreData: AppDataStore) -> [User] {
+        if let event = getEventById(eventId: eventId, appStoreData: appStoreData){
+            return event.listRegisteredParticipantId.compactMap{ userId in
+                getUserFromId(id: userId, appStoreData: appStoreData)
             }
         }
-        
-        return registeredUsers
+        return []
     }
     
     func validateIfUserIsSIGPIC(userId: Int, sigId: Int, appStoreData: AppDataStore) -> Bool {
@@ -41,24 +41,7 @@ struct Utils {
         }
         return false
     }
-    
-    func addEventToUser(_ user: Binding<User>, _ event: Binding<EventSIG>) {
-        let userId = Int(user.wrappedValue.id)
-        let eventId = Int(event.wrappedValue.id)
         
-        user.wrappedValue.bookedEventId.append(eventId)
-        event.wrappedValue.listRegisteredParticipantId.append(userId)
-    }
-    
-    func removeEventFromUser(_ user: Binding<User>, _ event: Binding<EventSIG>) {
-        let userId = Int(user.wrappedValue.id)
-        let eventId = Int(event.wrappedValue.id)
-        
-        user.wrappedValue.bookedEventId = user.wrappedValue.bookedEventId.filter { $0 != eventId }
-        event.wrappedValue.listRegisteredParticipantId = event.wrappedValue.listRegisteredParticipantId.filter { $0 != userId }
-        
-    }
-    
     
     // DATE
     func formatDate(from date: String) -> Date?{
@@ -128,15 +111,20 @@ struct Utils {
         return []
     }
     
-    func calculateOnGoingSigEvent(sig: SIG) -> Int {
-        return sig.listEventId.count
+    func calculateOnGoingSigEvent(sigId: Int, appStoreData: AppDataStore) -> Int {
+        if let sig = getSigById(sigId: sigId, appStoreData: appStoreData) {
+            return sig.listEventId.count
+        }
+        return -1
     }
     
     // EVENT
-    func checkIfUserBookEvent(event: EventSIG, user: User) -> Bool{
-        for registeredMember in event.listRegisteredParticipantId {
-            if(registeredMember == user.id){
-                return true
+    func checkIfUserBookEvent(eventId: Int, userId: Int, appStoreData: AppDataStore) -> Bool{
+        if let user = appStoreData.users.first(where: { $0.id == userId }){
+            for everyEvent in user.bookedEventId {
+                if everyEvent == eventId {
+                    return true
+                }
             }
         }
         return false
@@ -158,16 +146,45 @@ struct Utils {
         return appStoreData.events.first(where: { $0.id == eventId })
     }
     
-    func getEventListWithoutTheUser(user: User, appStoreData: AppDataStore) -> [EventSIG]{
+    func getEventListWithoutTheUser(userId: Int, appStoreData: AppDataStore) -> [EventSIG]{
         return appStoreData.events.filter { event in
-            checkIfUserBookEvent(event: event, user: user) == false
+            checkIfUserBookEvent(eventId: event.id, userId: userId, appStoreData: appStoreData) == false
         }
     }
     
-    func calculateRemainingSlot(event: EventSIG) -> Int{
-        let maxSlots = event.maxSlots
-        
-        return maxSlots - event.listRegisteredParticipantId.count
+    func calculateRemainingSlot(eventId: Int, appStoreData: AppDataStore) -> Int{
+        if let event = getEventById(eventId: eventId, appStoreData: appStoreData){
+            let maxSlots = event.maxSlots
+            
+            return maxSlots - event.listRegisteredParticipantId.count
+        }
+        return -1
+    }
+    
+    func addParticipantToEvent(userId: Int, eventId: Int, appStoreData: AppDataStore) -> Bool{
+        if let userIndex = appStoreData.users.firstIndex(where: { $0.id == userId }) {
+            if let eventIndex = appStoreData.events.firstIndex(where: { $0.id == eventId }){
+                appStoreData.events[eventIndex].listRegisteredParticipantId.append(userId)
+                appStoreData.users[userIndex].bookedEventId.append(eventId)
+                appStoreData.currentActiveUser = appStoreData.users[userIndex]
+                
+                return true
+            }
+        }
+        return false
+    }
+    
+    func removeParticipantFromEvent(userId: Int, eventId: Int, appStoreData: AppDataStore) -> Bool{
+        if let userIndex = appStoreData.users.firstIndex(where: { $0.id == userId }) {
+            if let eventIndex = appStoreData.events.firstIndex(where: { $0.id == eventId }){
+                appStoreData.events[eventIndex].listRegisteredParticipantId.removeAll(where: {$0 == userId})
+                appStoreData.users[userIndex].bookedEventId.removeAll(where: {$0 == eventId})
+                appStoreData.currentActiveUser = appStoreData.users[userIndex]
+                
+                return true
+            }
+        }
+        return false
     }
     
     // NOTIFICATION
@@ -182,9 +199,11 @@ struct Utils {
     }
     
     func deleteNotificationByID(notificationID: Int, userId: Int, appStoreData: AppDataStore) {
-        if var user = appStoreData.users.first(where: { $0.id == userId }) {
-            user.notificationId.removeAll(where: { $0 == notificationID})
-            appStoreData.currentActiveUser = user
+        if let userIndex = appStoreData.users.firstIndex(where: { $0.id == userId }){
+            appStoreData.users[userIndex].notificationId.removeAll(where: { $0 == notificationID})
+            appStoreData.currentActiveUser = appStoreData.users[userIndex]
         }
     }
+    
+
 }

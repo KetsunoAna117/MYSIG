@@ -12,18 +12,23 @@ struct EventListView: View {
     let eventList: [EventSIG]
     
     var body: some View {
-        if let currentActiveUser = appStoreData.currentActiveUser{
+        if appStoreData.currentActiveUser != nil{
             if eventList.isEmpty == false {
                 VStack {
                     ForEach(eventList, id: \.self) { anEvent in
                         NavigationLink(destination: {
-                            EventDetails(selectedEvent: anEvent, currentActiveUser: currentActiveUser)
+                            EventDetails(selectedEvent: anEvent)
                                 .environmentObject(appStoreData)
                         }, label: {
                             EventCardView(event: anEvent)
                         })
                     }
                 }
+            } else {
+                Text("You haven't book any event...")
+                    .foregroundStyle(Color.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 16)
             }
         }
     }
@@ -33,7 +38,7 @@ struct EventListView: View {
     NavigationStack {
         EventListView(
             eventList: Utils().getAllEventFromListId(
-                eventIdList: [1, 2, 3, 4],
+                eventIdList: [],
                 appStoreData: AppDataStore()
             )
         )

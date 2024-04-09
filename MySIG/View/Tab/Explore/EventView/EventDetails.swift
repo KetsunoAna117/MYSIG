@@ -10,7 +10,6 @@ import SwiftUI
 struct EventDetails: View {
     @EnvironmentObject private var appStoreData: AppDataStore
     @State var selectedEvent: EventSIG
-    @State var currentActiveUser: User
     
     @State private var showModal = false
     @State private var descDetent = PresentationDetent.medium
@@ -18,7 +17,9 @@ struct EventDetails: View {
     @State private var isInfoButtonClicked = false
     
     @State private var isBooked = false
-    @State private var buttonText = "Book This Event"
+    
+    @State private var listEventParticipant: [User] = []
+    @State private var remainingSlot: Int = 0
     
     var body: some View {
         let dayName: String = String(Utils().getDayName(from: selectedEvent.date ?? Date.now).prefix(3))
@@ -43,7 +44,6 @@ struct EventDetails: View {
                         }
                         
                         Spacer()
-                        let remainingSlot = Utils().calculateRemainingSlot(event: selectedEvent)
                         Text("\(remainingSlot) remaining slot")
                             .font(.subheadline)
                             .fontWeight(.bold)
@@ -123,12 +123,12 @@ struct EventDetails: View {
                         Text("Registered Participants")
                             .font(.title3)
                             .fontWeight(.bold)
-                        let users = Utils().getUsersRegisteredForEvent(
-                            eventData: selectedEvent,
-                            appStoreData: appStoreData)
                         
-                        ParticipantListView(participantList: users, sigId: selectedEvent.sigId)
-                            .environmentObject(appStoreData)
+                        ParticipantListView(
+                            participantList: listEventParticipant,
+                            sigId: selectedEvent.sigId
+                        )
+                        .environmentObject(appStoreData)
                     }
                 })
                 .padding(.horizontal, 16)
@@ -193,19 +193,39 @@ struct EventDetails: View {
             .padding(.horizontal, 20)
             
             Button(action: {
-                if (!isBooked){
-                    Utils().addEventToUser($currentActiveUser, $selectedEvent)
-                    buttonText = "Unbook Event"
-                } else {
-                    Utils().removeEventFromUser($currentActiveUser, $selectedEvent)
-                    buttonText = "Book This Event"
+                if let user = appStoreData.currentActiveUser {
+                    if isBooked == false {
+                        if Utils().calculateRemainingSlot(
+                            eventId: selectedEvent.id,
+                            appStoreData: appStoreData
+                        ) > 0 {
+                            let result = Utils().addParticipantToEvent(
+                                userId: user.id,
+                                eventId: selectedEvent.id,
+                                appStoreData: appStoreData
+                            )
+                            
+                            if result == true {
+                                isBooked = true
+                            }
+                        }
+                    }
+                    else {
+                        let result = Utils().removeParticipantFromEvent(
+                            userId: user.id,
+                            eventId: selectedEvent.id,
+                            appStoreData: appStoreData
+                        )
+                        
+                        if result == true {
+                            isBooked = false
+                        }
+                    }
                 }
                 
-                isBooked.toggle()
                 
             }, label: {
-                
-                Text("\(buttonText)")
+                Text(isBooked ? "Unbook Event" : "Book This Event")
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 10)
             })
@@ -214,15 +234,10 @@ struct EventDetails: View {
             .padding(.top, 10)
             .padding(.horizontal, 20)
             .onAppear{
-                if let currentActiveUser = appStoreData.currentActiveUser {
-                    isBooked = Utils().checkIfUserBookEvent(event: selectedEvent, user: currentActiveUser)
-                }
-                
-                if(isBooked){
-                    buttonText = "Unbook Event"
-                } else {
-                    buttonText = "Book This Event"
-                }
+                putAllData()
+            }
+            .onChange(of: isBooked) { 
+                putAllData()
             }
             
         }
@@ -230,11 +245,37 @@ struct EventDetails: View {
         .navigationTitle("Event Description")
         .navigationBarTitleDisplayMode(.inline)
     }
+    
+    
+    private func putAllData(){
+        if let currentActiveUser = appStoreData.currentActiveUser {
+            if let selectedEvent = Utils().getEventById(
+                eventId: selectedEvent.id,
+                appStoreData: appStoreData
+            ) {
+                isBooked = Utils().checkIfUserBookEvent(
+                    eventId: selectedEvent.id,
+                    userId: currentActiveUser.id,
+                    appStoreData: appStoreData
+                )
+                
+                listEventParticipant = Utils().getUsersRegisteredForEvent(
+                    eventId: selectedEvent.id,
+                    appStoreData: appStoreData
+                )
+                remainingSlot = Utils().calculateRemainingSlot(eventId: selectedEvent.id, appStoreData: appStoreData)
+            }
+        }
+    }
 }
+
+
+
+
 
 #Preview {
     NavigationStack {
-        EventDetails(selectedEvent: AppDataStore().events[0], currentActiveUser: AppDataStore().users[0])
+        EventDetails(selectedEvent: AppDataStore().events[0])
             .environmentObject(AppDataStore())
     }
 }
