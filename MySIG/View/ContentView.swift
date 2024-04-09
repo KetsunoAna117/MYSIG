@@ -22,35 +22,37 @@ struct ContentView: View {
             LoginView()
         }
         else{
-            TabView(selection: $tabSelection, content: {
-                BookedEventView()
-                    .environmentObject(appDataStore)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .tag(Tab.bookedEvent)
-                    .tabItem {
-                        Label("Booked Event", systemImage: "pencil.and.list.clipboard")
-                    }
-                ExploreView()
-                    .environmentObject(appDataStore)
-                    .tag(Tab.explore)
-                    .tabItem {
-                        Label("Explore", systemImage: "magnifyingglass")
-                    }
-//                    .toolbar {
-//                        ToolbarItem(placement: .navigation) {
-//                            Text("Explore")
-//                                .font(.largeTitle)
-//                                .fontWeight(.bold)
-//                                .padding(.top, 80)
-//                        }
-//                    }
-                ProfileView()
-                    .environmentObject(appDataStore)
-                    .tag(Tab.profile)
-                    .tabItem {
-                        Label("Profile", systemImage: "person")
-                    }
-            })
+            if let currentActiveUser = appDataStore.currentActiveUser {
+                TabView(selection: $tabSelection, content: {
+                    BookedEventView()
+                        .environmentObject(appDataStore)
+                        .navigationBarTitleDisplayMode(.inline)
+                        .tag(Tab.bookedEvent)
+                        .tabItem {
+                            Label("Booked Event", systemImage: "pencil.and.list.clipboard")
+                        }
+                    ExploreView()
+                        .environmentObject(appDataStore)
+                        .tag(Tab.explore)
+                        .tabItem {
+                            Label("Explore", systemImage: "magnifyingglass")
+                        }
+                    //                    .toolbar {
+                    //                        ToolbarItem(placement: .navigation) {
+                    //                            Text("Explore")
+                    //                                .font(.largeTitle)
+                    //                                .fontWeight(.bold)
+                    //                                .padding(.top, 80)
+                    //                        }
+                    //                    }
+                    ProfileView()
+                        .environmentObject(appDataStore)
+                        .tag(Tab.profile)
+                        .tabItem {
+                            Label("Profile", systemImage: "person")
+                        }
+                })
+            }
         }
     }
 }

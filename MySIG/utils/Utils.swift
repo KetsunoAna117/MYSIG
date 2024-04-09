@@ -42,22 +42,63 @@ struct Utils {
         return false
     }
     
-    func addEventToUser(_ user: Binding<User>, _ event: Binding<EventSIG>) {
-        let userId = Int(user.wrappedValue.id)
-        let eventId = Int(event.wrappedValue.id)
+    func addEventToUser(userId: Int, eventId: Int, appStoreData: AppDataStore) {
+            
+            if var user = appStoreData.users.first(where: { $0.id == userId }) {
+                var updatedBookedEventId = user.bookedEventId
+                updatedBookedEventId.append(eventId)
+                user.bookedEventId = updatedBookedEventId
+                appStoreData.currentActiveUser = user
+                
+                if var event = appStoreData.events.first(where: { $0.id == eventId }){
+                    var updatedListRegisteredParticipantId = event.listRegisteredParticipantId
+                    updatedListRegisteredParticipantId.append(userId)
+                    event.listRegisteredParticipantId = updatedListRegisteredParticipantId
+                }
+                
+            }
+            
+        }
         
-        user.wrappedValue.bookedEventId.append(eventId)
-        event.wrappedValue.listRegisteredParticipantId.append(userId)
-    }
+        func removeEventFromUser(userId: Int, eventId: Int, appStoreData: AppDataStore) {
+            if var user = appStoreData.users.first(where: { $0.id == userId }) {
+                var updatedBookedEventId = user.bookedEventId
+                updatedBookedEventId.removeAll(where: { $0 == eventId })
+                user.bookedEventId = updatedBookedEventId
+                appStoreData.currentActiveUser = user
+                
+                if var event = appStoreData.events.first(where: { $0.id == eventId }) {
+                    var updatedListRegisteredParticipantId = event.listRegisteredParticipantId
+                    updatedListRegisteredParticipantId.removeAll(where: { $0 == userId })
+                    event.listRegisteredParticipantId = updatedListRegisteredParticipantId
+                }
+            }
+        }
     
-    func removeEventFromUser(_ user: Binding<User>, _ event: Binding<EventSIG>) {
-        let userId = Int(user.wrappedValue.id)
-        let eventId = Int(event.wrappedValue.id)
-        
-        user.wrappedValue.bookedEventId = user.wrappedValue.bookedEventId.filter { $0 != eventId }
-        event.wrappedValue.listRegisteredParticipantId = event.wrappedValue.listRegisteredParticipantId.filter { $0 != userId }
-        
-    }
+//    func addEventToUser(userId: Int, eventId: Int, appStoreData: AppDataStore) {
+//        
+//        if var user = appStoreData.users.first(where: { $0.id == userId }) {
+//            user.bookedEventId.append(eventId)
+//            appStoreData.currentActiveUser = user
+//            
+//            if var event = appStoreData.events.first(where: { $0.id == eventId }){
+//                event.listRegisteredParticipantId.append(userId)
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//    func removeEventFromUser(userId: Int, eventId: Int, appStoreData: AppDataStore) {
+//        if var user = appStoreData.users.first(where: { $0.id == userId }) {
+//            user.bookedEventId.removeAll(where: { $0 == eventId })
+//            appStoreData.currentActiveUser = user
+//            
+//            if var event = appStoreData.events.first(where: { $0.id == eventId }) {
+//                event.listRegisteredParticipantId.removeAll(where: { $0 == userId })
+//            }
+//        }
+//    }
     
     
     // DATE

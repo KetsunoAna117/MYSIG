@@ -171,10 +171,19 @@ struct EventCardView: View {
                                     .weight(.medium)
                             )
                             .foregroundColor(Color.white)
+                        
+                        
+                        Button(action: {
+                            print("user book the event: \(Utils().checkIfUserBookEvent(event: event, user: user))")
+                        }, label: {
+                            /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
+                        })
                     }
                     .padding(.trailing, 5)
                 }
             }
+            
+            
         }
         .frame(height: 160)
     }
