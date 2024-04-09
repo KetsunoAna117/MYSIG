@@ -51,7 +51,7 @@ struct SIGDetails: View {
                         }
                     
                     if let user = Utils().getUserFromSIG(
-                        sigData: selectedSIG,
+                        sigId: selectedSIG.id,
                         appStoreData: appDataStore) {
                         
                         List {

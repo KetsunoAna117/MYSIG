@@ -24,6 +24,11 @@ struct EventListView: View {
                         })
                     }
                 }
+            } else {
+                Text("You haven't book any event...")
+                    .foregroundStyle(Color.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 16)
             }
         }
     }
@@ -33,7 +38,7 @@ struct EventListView: View {
     NavigationStack {
         EventListView(
             eventList: Utils().getAllEventFromListId(
-                eventIdList: [1, 2, 3, 4],
+                eventIdList: [],
                 appStoreData: AppDataStore()
             )
         )

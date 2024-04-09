@@ -31,6 +31,6 @@ struct ParticipantListView: View {
 }
 
 #Preview {
-    ParticipantListView(participantList: Utils().getUsersRegisteredForEvent(eventData: AppDataStore().events[0], appStoreData: AppDataStore()), sigId: 1)
+    ParticipantListView(participantList: Utils().getUsersRegisteredForEvent(eventId: AppDataStore().events[0].id, appStoreData: AppDataStore()), sigId: 1)
         .environmentObject(AppDataStore())
 }
