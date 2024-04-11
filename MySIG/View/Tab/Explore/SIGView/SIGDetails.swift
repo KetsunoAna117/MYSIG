@@ -66,9 +66,19 @@ struct SIGDetails: View {
                     }
                     
                     VStack(alignment: .leading, content: {
-                        Text("Event List")
-                            .font(.title3)
+                        HStack {
+                            Text("Event List")
+                                .font(.title3)
                             .fontWeight(.bold)
+                            Spacer()
+                            NavigationLink {
+                                CreateEventView(selectedSIG: selectedSIG)
+                                    .environmentObject(appDataStore)
+                            } label: {
+                                Image(systemName: "plus.app")
+                                    .foregroundStyle(Color.accentColor)
+                            }
+                        }
                         
                         VStack(alignment: .center) {
                             let eventList = Utils().getAllEventFromListId(

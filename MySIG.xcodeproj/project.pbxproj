@@ -11,6 +11,8 @@
 		3A196F6E2BBD726F00109FB7 /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A196F6C2BBD726F00109FB7 /* PasswordField.swift */; };
 		3A196F6F2BBD726F00109FB7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A196F6D2BBD726F00109FB7 /* LoginView.swift */; };
 		3A196F732BBD747F00109FB7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A196F722BBD747F00109FB7 /* Utils.swift */; };
+		3A1F5A4F2BC7E23600B20FF7 /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F5A4E2BC7E23600B20FF7 /* CreateEventView.swift */; };
+		3A1F5A512BC7E58600B20FF7 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F5A502BC7E58600B20FF7 /* CustomTextField.swift */; };
 		3A43BA0C2BC2DB850091D3D5 /* ParticipantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A43BA0A2BC2DB840091D3D5 /* ParticipantListView.swift */; };
 		3A43BA0D2BC2DB850091D3D5 /* ParticipantCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A43BA0B2BC2DB850091D3D5 /* ParticipantCardView.swift */; };
 		3A47AE3F2BC13FBF00073D75 /* SIGDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47AE3E2BC13FBF00073D75 /* SIGDetails.swift */; };
@@ -46,6 +48,8 @@
 		3A196F6C2BBD726F00109FB7 /* PasswordField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 		3A196F6D2BBD726F00109FB7 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3A196F722BBD747F00109FB7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		3A1F5A4E2BC7E23600B20FF7 /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
+		3A1F5A502BC7E58600B20FF7 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3A43BA0A2BC2DB840091D3D5 /* ParticipantListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantListView.swift; sourceTree = "<group>"; };
 		3A43BA0B2BC2DB850091D3D5 /* ParticipantCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantCardView.swift; sourceTree = "<group>"; };
 		3A47AE3E2BC13FBF00073D75 /* SIGDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIGDetails.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 			children = (
 				3AFF018F2BBE98A300A4082B /* ExploreSIGView.swift */,
 				3A47AE3E2BC13FBF00073D75 /* SIGDetails.swift */,
+				3A1F5A4E2BC7E23600B20FF7 /* CreateEventView.swift */,
 			);
 			path = SIGView;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 				3A47AE472BC183F500073D75 /* Event */,
 				3A47AE482BC1840200073D75 /* SIG */,
 				3A47AE402BC14DA700073D75 /* InformationRowView.swift */,
+				3A1F5A502BC7E58600B20FF7 /* CustomTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -361,9 +367,11 @@
 				3A47AE432BC1511800073D75 /* EventListView.swift in Sources */,
 				3A47AE542BC1A04000073D75 /* ProfileView.swift in Sources */,
 				3AFF018E2BBE987900A4082B /* ExploreEventView..swift in Sources */,
+				3A1F5A512BC7E58600B20FF7 /* CustomTextField.swift in Sources */,
 				3A8C74372BBD54D800CE1D58 /* ExploreView.swift in Sources */,
 				3A47AE412BC14DA700073D75 /* InformationRowView.swift in Sources */,
 				3AEA22032BBB96CE004239F4 /* MySIGApp.swift in Sources */,
+				3A1F5A4F2BC7E23600B20FF7 /* CreateEventView.swift in Sources */,
 				3A47AE522BC1A04000073D75 /* EditProfileView.swift in Sources */,
 				3A8C743E2BBD5F8900CE1D58 /* EventCardView.swift in Sources */,
 				3A8C742F2BBD4CE900CE1D58 /* EventSIG.swift in Sources */,
