@@ -41,6 +41,7 @@
 		3AEA220A2BBB96D0004239F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AEA22092BBB96D0004239F4 /* Preview Assets.xcassets */; };
 		3AFF018E2BBE987900A4082B /* ExploreEventView..swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF018D2BBE987900A4082B /* ExploreEventView..swift */; };
 		3AFF01902BBE98A300A4082B /* ExploreSIGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF018F2BBE98A300A4082B /* ExploreSIGView.swift */; };
+		EC9D80E82BCD1EEA00B35B4E /* MatchedProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9D80E72BCD1EEA00B35B4E /* MatchedProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		3AEA22092BBB96D0004239F4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3AFF018D2BBE987900A4082B /* ExploreEventView..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreEventView..swift; sourceTree = "<group>"; };
 		3AFF018F2BBE98A300A4082B /* ExploreSIGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSIGView.swift; sourceTree = "<group>"; };
+		EC9D80E72BCD1EEA00B35B4E /* MatchedProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				3A47AE4F2BC1A03F00073D75 /* JoinedSIGView.swift */,
 				3A47AE512BC1A04000073D75 /* PastEventView.swift */,
 				3A47AE502BC1A04000073D75 /* ProfileView.swift */,
+				EC9D80E72BCD1EEA00B35B4E /* MatchedProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				3AE461512BBF876B005FB89E /* SIGCardView.swift in Sources */,
 				3A196F6F2BBD726F00109FB7 /* LoginView.swift in Sources */,
 				3A43BA0C2BC2DB850091D3D5 /* ParticipantListView.swift in Sources */,
+				EC9D80E82BCD1EEA00B35B4E /* MatchedProfileView.swift in Sources */,
 				3AEA22052BBB96CE004239F4 /* ContentView.swift in Sources */,
 				3A196F732BBD747F00109FB7 /* Utils.swift in Sources */,
 				3A103A702BC2978400DB4510 /* EventDetails.swift in Sources */,

@@ -11,6 +11,7 @@ struct SIGDetails: View {
     @EnvironmentObject private var appDataStore: AppDataStore
     let selectedSIG: SIG
     @State private var showModal = false
+    @State private var isSubscribed = false
     
     @State private var descDetent = PresentationDetent.medium
     
@@ -107,19 +108,72 @@ struct SIGDetails: View {
             Divider()
                 .frame(height: 1)
             Button(action: {
-                // Join SIG
+                if let user = appDataStore.currentActiveUser {
+                    
+                    if isSubscribed == false {
+                            let result = Utils().addParticipantToSIG(
+                                userId: user.id,
+                                sigId: selectedSIG.id,
+                                appStoreData: appDataStore
+                            )
+                            
+                            if result == true {
+                                isSubscribed = true
+                            }
+                        }
+                    else {
+                        let result = Utils().removeParticipantFromSIG(
+                            userId: user.id,
+                            sigId: selectedSIG.id,
+                            appStoreData: appDataStore
+                        )
+                        
+                        if result == true {
+                            isSubscribed = false
+                        }
+                    }
+                }
             }, label: {
-                Text("Subscribe notification")
-                    .frame(maxWidth: .infinity)
+                Text(isSubscribed ? "Unsubscribe notification" : "Subscribe notification")
+                    .font(.title2)
+                    .frame(width: 350, height: 60)
+                    .background(isSubscribed ? Constants.Purple : Constants.Orange)
+                    .foregroundStyle(.white)
+                    .cornerRadius(10)
                     .padding(.vertical, 10)
             })
-            .buttonStyle(.borderedProminent)
+            .onAppear{
+                putAllData()
+            }
+            .onChange(of: isSubscribed) {
+                putAllData()
+            }
             .padding(.top, 10)
             .padding(.horizontal, 20)
         }
         .padding(.vertical, 16)
         .navigationTitle("SIG Profile")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private func putAllData(){
+        if let currentActiveUser = appDataStore.currentActiveUser {
+            if let selectedEvent = Utils().getSigById(
+                sigId: selectedSIG.id,
+                appStoreData: appDataStore
+            ) {
+                isSubscribed = Utils().checkIfUserSubscribedToSIG(
+                    sigId: selectedSIG.id,
+                    userId: currentActiveUser.id,
+                    appStoreData: appDataStore
+                )
+//                
+//                listEventParticipant = Utils().getUsersRegisteredForEvent(
+//                    eventId: selectedEvent.id,
+//                    appStoreData: appStoreData
+//                )
+            }
+        }
     }
 }
 

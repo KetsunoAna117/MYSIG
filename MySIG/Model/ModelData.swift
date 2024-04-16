@@ -32,7 +32,7 @@ struct Data {
     
      var users: [User] = [
         User(id: 1,
-             email: "Johndoe@mail.id",
+             email: "Johndoe@bsd.idserve.net",
              password: "123",
              picture: "john-doe",
              name: "John Doe",
@@ -44,7 +44,7 @@ struct Data {
              notificationId: [1]
         ),
         User(id: 2,
-             email: "jamesrc@mail.id",
+             email: "jamesrc@bsd.idserve.net",
              password: "123",
              picture: "james",
              name: "James RC",
@@ -56,7 +56,7 @@ struct Data {
              notificationId: []
         ),
         User(id: 3,
-             email: "dea@mail.id",
+             email: "dea@bsd.idserve.net",
              password: "123",
              picture: "dea",
              name: "Dea",
@@ -68,7 +68,7 @@ struct Data {
              notificationId: []
         ),
         User(id: 4,
-             email: "johan@mail.id",
+             email: "johan@bsd.idserve.net",
              password: "123",
              picture: "johan",
              name: "Johan",
