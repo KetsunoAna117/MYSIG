@@ -37,10 +37,7 @@ struct EventListView: View {
 #Preview {
     NavigationStack {
         EventListView(
-            eventList: Utils().getAllEventFromListId(
-                eventIdList: [1, 2],
-                appStoreData: AppDataStore()
-            )
+            eventList: Utils().getEventListFromSIG(sigId: 1, appStoreData: AppDataStore())
         )
         .environmentObject(AppDataStore())
     }

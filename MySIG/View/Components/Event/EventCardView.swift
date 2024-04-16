@@ -15,9 +15,9 @@ struct EventCardView: View {
     
     var body: some View {
         let time = event.time.components(separatedBy: "-")
-        let dayName: String = String(Utils().getDayName(from: event.date ?? Date.now).prefix(3))
-        let day = Utils().getDay(from: event.date ?? Date.now)
-        let month = Utils().getMonth(from: event.date ?? Date.now)
+        let dayName: String = String(Utils().getDayName(from: event.date).prefix(3))
+        let day = Utils().getDay(from: event.date)
+        let month = Utils().getMonth(from: event.date)
         
         ZStack(alignment: .topTrailing) {
             Rectangle()

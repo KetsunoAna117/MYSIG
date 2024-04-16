@@ -14,6 +14,9 @@ struct SIGDetails: View {
     @State private var isSubscribed = false
     
     @State private var descDetent = PresentationDetent.medium
+    @State private var createEventDetent = PresentationDetent.large
+    @State private var eventList: [EventSIG] = []
+    @State private var createdNewEvent = false
     
     var body: some View {
         VStack(alignment: .center) {
@@ -70,10 +73,10 @@ struct SIGDetails: View {
                         HStack {
                             Text("Event List")
                                 .font(.title3)
-                            .fontWeight(.bold)
+                                .fontWeight(.bold)
                             Spacer()
                             NavigationLink {
-                                CreateEventView(selectedSIG: selectedSIG)
+                                CreateEventView(selectedSIG: selectedSIG, createdEvent: $createdNewEvent)
                                     .environmentObject(appDataStore)
                             } label: {
                                 Image(systemName: "plus.app")
@@ -82,11 +85,6 @@ struct SIGDetails: View {
                         }
                         
                         VStack(alignment: .center) {
-                            let eventList = Utils().getAllEventFromListId(
-                                eventIdList: selectedSIG.listEventId,
-                                appStoreData: AppDataStore()
-                            )
-                            
                             if eventList.isEmpty {
                                 Text("There's no event at the moment...")
                                     .font(.footnote)
@@ -111,16 +109,16 @@ struct SIGDetails: View {
                 if let user = appDataStore.currentActiveUser {
                     
                     if isSubscribed == false {
-                            let result = Utils().addParticipantToSIG(
-                                userId: user.id,
-                                sigId: selectedSIG.id,
-                                appStoreData: appDataStore
-                            )
-                            
-                            if result == true {
-                                isSubscribed = true
-                            }
+                        let result = Utils().addParticipantToSIG(
+                            userId: user.id,
+                            sigId: selectedSIG.id,
+                            appStoreData: appDataStore
+                        )
+                        
+                        if result == true {
+                            isSubscribed = true
                         }
+                    }
                     else {
                         let result = Utils().removeParticipantFromSIG(
                             userId: user.id,
@@ -145,7 +143,7 @@ struct SIGDetails: View {
             .onAppear{
                 putAllData()
             }
-            .onChange(of: isSubscribed) {
+            .onChange(of: createdNewEvent) {
                 putAllData()
             }
             .padding(.top, 10)
@@ -158,20 +156,24 @@ struct SIGDetails: View {
     
     private func putAllData(){
         if let currentActiveUser = appDataStore.currentActiveUser {
-            if let selectedEvent = Utils().getSigById(
+            if Utils().getSigById(
                 sigId: selectedSIG.id,
                 appStoreData: appDataStore
-            ) {
+            ) != nil {
                 isSubscribed = Utils().checkIfUserSubscribedToSIG(
                     sigId: selectedSIG.id,
                     userId: currentActiveUser.id,
                     appStoreData: appDataStore
                 )
-//                
-//                listEventParticipant = Utils().getUsersRegisteredForEvent(
-//                    eventId: selectedEvent.id,
-//                    appStoreData: appStoreData
-//                )
+                eventList = Utils().getEventListFromSIG(
+                    sigId: selectedSIG.id,
+                    appStoreData: appDataStore
+                )
+                //
+                //                listEventParticipant = Utils().getUsersRegisteredForEvent(
+                //                    eventId: selectedEvent.id,
+                //                    appStoreData: appStoreData
+                //                )
             }
         }
     }

@@ -41,6 +41,13 @@ struct Utils {
         }
         return false
     }
+    
+    func getSubscribedUserId(sigId: Int, appStoreData: AppDataStore) -> [Int] {
+        if let sig = getSigById(sigId: sigId, appStoreData: appStoreData){
+            return sig.subscribedUserId
+        }
+        return []
+    }
         
     
     // DATE
@@ -88,6 +95,21 @@ struct Utils {
         
         if let yearDate = calendar.date(from: components) {
             return dateFormatter.string(from: yearDate)
+        } else {
+            return ""
+        }
+    }
+    
+    func getHourAndMinutes(from time: Date) -> String {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour, .minute], from: time)
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm"
+        dateFormatter.calendar = calendar
+
+        if let hourAndMinutes = calendar.date(from: components) {
+            return dateFormatter.string(from: hourAndMinutes)
         } else {
             return ""
         }
@@ -171,10 +193,13 @@ struct Utils {
         return false
     }
     
-    func getAllEventFromListId(eventIdList: [Int], appStoreData: AppDataStore) -> [EventSIG] {
-        return eventIdList.compactMap { eventId in
-            getEventById(eventId: eventId, appStoreData: appStoreData)
+    func getUserEventListFromSIG(userId: Int, appStoreData: AppDataStore) -> [EventSIG] {
+        if let user = appStoreData.users.first(where: { $0.id == userId }){
+            return user.bookedEventId.compactMap{ eventId in
+                getEventById(eventId: eventId, appStoreData: appStoreData)
+            }
         }
+        return []
     }
     
     func getEventListFromSIG(sigId: Int, appStoreData: AppDataStore) -> [EventSIG] {
@@ -202,6 +227,10 @@ struct Utils {
         return -1
     }
     
+    func getLastInsertedEventId(appStoreData: AppDataStore) -> Int {
+        return appStoreData.events.count
+    }
+    
     func addParticipantToEvent(userId: Int, eventId: Int, appStoreData: AppDataStore) -> Bool{
         if let userIndex = appStoreData.users.firstIndex(where: { $0.id == userId }) {
             if let eventIndex = appStoreData.events.firstIndex(where: { $0.id == eventId }){
@@ -226,6 +255,30 @@ struct Utils {
             }
         }
         return false
+    }
+    
+    func createNewEvent(eventName: String, eventDesc: String, eventLocation: String, eventDate: Date,
+                        eventStartingTime: Date, eventEndingTime: Date, maxSlot: Int, sigId: Int, listRemindedUser: [Int], appStoreData: AppDataStore) -> Bool{
+        var eventId = getLastInsertedEventId(appStoreData: appStoreData) + 1
+                
+        let time = getHourAndMinutes(from: eventStartingTime) + "-" + getHourAndMinutes(from: eventEndingTime)
+        
+        let event = EventSIG(
+            id: eventId,
+            name: eventName,
+            desc: eventDesc,
+            eventStatus: "Ongoing",
+            listRemindedUser: listRemindedUser,
+            location: eventLocation,
+            date: eventDate,
+            time: time,
+            maxSlots: maxSlot,
+            sigId: sigId,
+            listRegisteredParticipantId: []
+        )
+                
+        appStoreData.events.append(event)
+        return true
     }
     
     // NOTIFICATION

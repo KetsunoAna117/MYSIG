@@ -18,8 +18,8 @@ struct BookedEventView: View {
             ScrollView {
                 VStack {
                     if let currentActiveUser = appDataStore.currentActiveUser {
-                        let eventList = Utils().getAllEventFromListId(
-                            eventIdList: currentActiveUser.bookedEventId,
+                        let eventList = Utils().getUserEventListFromSIG(
+                            userId: currentActiveUser.id,
                             appStoreData: appDataStore
                         )
                         EventListView(eventList: eventList)

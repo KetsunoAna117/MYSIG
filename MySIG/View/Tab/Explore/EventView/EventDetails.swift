@@ -22,10 +22,10 @@ struct EventDetails: View {
     @State private var remainingSlot: Int = 0
     
     var body: some View {
-        let dayName: String = String(Utils().getDayName(from: selectedEvent.date ?? Date.now).prefix(3))
-        let day = Utils().getDay(from: selectedEvent.date ?? Date.now)
-        let month = Utils().getMonth(from: selectedEvent.date ?? Date.now)
-        let year = Utils().getYear(from: selectedEvent.date ?? Date.now)
+        let dayName: String = String(Utils().getDayName(from: selectedEvent.date).prefix(3))
+        let day = Utils().getDay(from: selectedEvent.date)
+        let month = Utils().getMonth(from: selectedEvent.date)
+        let year = Utils().getYear(from: selectedEvent.date)
         
         VStack(alignment: .center) {
             ScrollView {
