@@ -15,13 +15,14 @@ struct ProfileView: View {
             VStack {
                 Divider()
                     .padding(.bottom, 16)
+                
                 if let currentActiveUser = appDataStore.currentActiveUser {
                     HStack{
                         Image("\(currentActiveUser.picture)")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
+                            .clipShape(Circle())
                             .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                            .cornerRadius(50)
                         
                         
                         VStack(alignment: .leading, content: {

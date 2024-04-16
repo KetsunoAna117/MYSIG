@@ -38,7 +38,7 @@ struct EventListView: View {
     NavigationStack {
         EventListView(
             eventList: Utils().getAllEventFromListId(
-                eventIdList: [],
+                eventIdList: [1, 2],
                 appStoreData: AppDataStore()
             )
         )

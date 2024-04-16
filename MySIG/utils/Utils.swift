@@ -118,6 +118,47 @@ struct Utils {
         return -1
     }
     
+    func addParticipantToSIG(userId: Int, sigId: Int, appStoreData: AppDataStore) -> Bool{
+        if let userIndex = appStoreData.users.firstIndex(where: { $0.id == userId }) {
+            if let sigIndex = appStoreData.sigs.firstIndex(where: { $0.id == sigId }){
+                appStoreData.sigs[sigIndex].subscribedUserId.append(userId)
+                appStoreData.users[userIndex].joinedSigId.append(sigId)
+                appStoreData.currentActiveUser = appStoreData.users[userIndex]
+                
+                return true
+            }
+        }
+        return false
+    }
+    
+    func removeParticipantFromSIG(userId: Int, sigId: Int, appStoreData: AppDataStore) -> Bool{
+        if let userIndex = appStoreData.users.firstIndex(where: { $0.id == userId }) {
+            if let eventIndex = appStoreData.sigs.firstIndex(where: { $0.id == sigId }){
+                appStoreData.sigs[eventIndex].subscribedUserId.removeAll(where: {$0 == userId})
+                appStoreData.users[userIndex].joinedSigId.removeAll(where: {$0 == sigId})
+                appStoreData.currentActiveUser = appStoreData.users[userIndex]
+                
+                return true
+            }
+        }
+        return false
+    }
+    
+    func checkIfUserSubscribedToSIG(sigId: Int, userId: Int, appStoreData: AppDataStore) -> Bool{
+        if let user = appStoreData.users.first(where: { $0.id == userId }){
+            
+            if user.joinedSigId.contains(where: { $0 == sigId} ){
+                return true
+            }
+//            for everySIG in user.joinedSigId {
+//                if everySIG == sigId {
+//                    return true
+//                }
+//            }
+        }
+        return false
+    }
+    
     // EVENT
     func checkIfUserBookEvent(eventId: Int, userId: Int, appStoreData: AppDataStore) -> Bool{
         if let user = appStoreData.users.first(where: { $0.id == userId }){
